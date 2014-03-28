@@ -17,6 +17,8 @@ public class ViiteManageri {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        ViiteManageriIkkuna ikkuna = new ViiteManageriIkkuna();
+        ikkuna.setVisible(true);
     }
     
 }
