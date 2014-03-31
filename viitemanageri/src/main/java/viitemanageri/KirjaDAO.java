@@ -6,6 +6,7 @@
 
 package viitemanageri;
 
+import viitemanageri.viitteet.Kirja;
 import java.util.List;
 
 /**
