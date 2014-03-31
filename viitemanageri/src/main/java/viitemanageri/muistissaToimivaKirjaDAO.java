@@ -25,7 +25,7 @@ public class muistissaToimivaKirjaDAO implements KirjaDAO{
     @Override
     public Kirja etsiNimella(String nimi) {
         for(Kirja k : kirjat){
-            if(k.getTeoksenNimi().contains(nimi))
+            if(k.getTeoksenNimi().toLowerCase().contains(nimi.toLowerCase()))
                 return k;
         }
         return null;
