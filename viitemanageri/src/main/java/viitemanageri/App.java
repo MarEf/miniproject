@@ -23,8 +23,10 @@ public class App {
     private static Muunna muuntaja = new Muunna();
     private static Tallenna tallentaja = new Tallenna();
 
-    public static void main(String[] args) {
-
+    public App() {
+    }
+    
+    public void aja(Io io) {
         io.tulosta("Tervetuloa käyttämään ViiteManageria!");
 
         while (true) {
@@ -41,6 +43,7 @@ public class App {
 
                 Kirja uusi = new Kirja(tekija, nimi, vuosi, julkaisija, tunnus);
                 kirjat.add(uusi);
+                io.tulosta("Kirja lisätty");
 
             } else if (komento.equals("listaa")) {
 
@@ -63,6 +66,51 @@ public class App {
             }
 
         }
+    }
+    
+    public static void main(String[] args) {
+        
+        App appi = new App();
+        appi.aja(io);
+        
+//        io.tulosta("Tervetuloa käyttämään ViiteManageria!");
+//
+//        while (true) {
+//
+//            String komento = io.lueString("Komento (lisaa, tallenna, listaa, exit): ");
+//            if (komento.equals("lisaa")) {
+//                io.tulosta("Lisätään kirja");
+//                String nimi = io.lueString("Nimi: ");
+//                String tekija = io.lueString("Tekijä: ");
+//
+//                String julkaisija = io.lueString("Julkaisija: ");
+//                int vuosi = io.lueInt("Vuosi: ");
+//                String tunnus = io.lueString("Tunnus: ");
+//
+//                Kirja uusi = new Kirja(tekija, nimi, vuosi, julkaisija, tunnus);
+//                kirjat.add(uusi);
+//
+//            } else if (komento.equals("listaa")) {
+//
+//                for (Viite k : kirjat) {
+//                    io.tulosta(k.toString());
+//                }
+//
+//            } else if (komento.equals("tallenna")) {
+//                String kansio = io.lueString("Mihin kansioon: ");
+//                String tiedostoNimi = io.lueString("Tiedostonimi: ");
+//                String data = muuntaja.muunnaViitteetBibtexMuotoon(kirjat);
+//                if (tallentaja.tallennaTiedosto(data, kansio, tiedostoNimi)) {
+//                    io.tulosta("Tallennettu");
+//                } else {
+//                    io.tulosta("Ei onnistunut");
+//                }
+//
+//            } else if (komento.equals("exit")) {
+//                break;
+//            }
+//
+//        }
 
     }
 }
