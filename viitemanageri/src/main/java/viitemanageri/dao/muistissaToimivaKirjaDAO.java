@@ -4,8 +4,9 @@
  * and open the template in the editor.
  */
 
-package viitemanageri;
+package viitemanageri.dao;
 
+import viitemanageri.dao.KirjaDAO;
 import java.util.List;
 import viitemanageri.viitteet.Kirja;
 
