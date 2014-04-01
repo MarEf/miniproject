@@ -4,13 +4,14 @@
  * and open the template in the editor.
  */
 
-package viitemanageri;
+package viitemanageri.io;
 
 /**
  *
  * @author glindstr@cs
  */
 public interface Io {
+    void tulosta(String viesti);
     int lueInt(String kysymys);
     String lueString(String kysymys);
 }
