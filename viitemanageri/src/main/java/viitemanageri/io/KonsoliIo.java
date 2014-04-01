@@ -1,7 +1,8 @@
 
 
-package viitemanageri;
+package viitemanageri.io;
 
+import viitemanageri.io.Io;
 import java.util.Scanner;
 
 /**
@@ -26,6 +27,11 @@ public class KonsoliIo implements Io {
     public String lueString(String kysymys) {
         System.out.println(kysymys + " ");
         return lukija.nextLine();
+    }
+
+    @Override
+    public void tulosta(String viesti) {
+        System.out.println(viesti);
     }
     
 }
