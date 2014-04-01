@@ -74,6 +74,11 @@ public class Kirja implements Viite {
         kaikkiArvot.add(new Arvo("year", ""+vuosi));
         return kaikkiArvot;
     }
+
+    @Override
+    public String toString() {
+        return "Kirja{" + "tekija=" + tekija + ", teoksenNimi=" + teoksenNimi + ", vuosi=" + vuosi + ", julkaisija=" + julkaisija + ", tunnus=" + tunnus + '}';
+    }
     
     
 }
