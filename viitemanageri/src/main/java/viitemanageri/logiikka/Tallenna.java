@@ -37,13 +37,9 @@ public class Tallenna {
             tiedosto = new FileOutputStream(sijainti+"/"+tiedostonNimi);
             
             tiedosto.write(tallennettavaData.getBytes());
-        } catch (FileNotFoundException ex) {
-            return false;
         } catch (IOException ex) {
             return false;
         }
-        
-        
         return true;
         
     }
