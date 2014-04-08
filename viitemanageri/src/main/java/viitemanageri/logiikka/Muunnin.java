@@ -34,7 +34,7 @@ public class Muunnin {
     
     private String muunnaViiteBibtexMuotoon(Viite muunnettavaViite){
         
-        String bibtex = "@book{"+muunnettavaViite.getTunnus()+",\n";
+        String bibtex = muunnettavaViite.getTyyppi()+"{"+muunnettavaViite.getTunnus()+",\n";
         
         for (Arvo xa: muunnettavaViite.palautaKaikkiArvot()){
             bibtex += xa.getMuuttuja();

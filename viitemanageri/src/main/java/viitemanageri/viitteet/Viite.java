@@ -14,4 +14,6 @@ public interface Viite {
 
     public String getTunnus();
     
+    public String getTyyppi();
+    
 }

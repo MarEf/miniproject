@@ -24,6 +24,7 @@ public class Artikkeli implements Viite{
     private int alkusivu;
     private int loppusivu;
     private String tunnus;
+    private final String bibtexTyyppi = "@article";
 
     public Artikkeli(String kirjoittaja, String otsikko, String lehti, int vuosi, int nidenumero, int numero, int alkusivu, int loppusivu, String tunnus) {
         this.kirjoittaja = kirjoittaja;
@@ -128,5 +129,10 @@ public class Artikkeli implements Viite{
     @Override
     public String toString() {
         return "Artikkeli{" + "kirjoittaja=" + kirjoittaja+ ", lehti=" + lehti + ", vuosi="+ vuosi+", nidenumero="+nidenumero+ ", numero="+numero + ", sivut="+alkusivu+"--"+loppusivu+ ", tunnus=" + tunnus + '}';
+    }
+
+    @Override
+    public String getTyyppi() {
+        return bibtexTyyppi;
     }
 }

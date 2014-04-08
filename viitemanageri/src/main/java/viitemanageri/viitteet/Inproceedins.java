@@ -23,6 +23,7 @@ public class Inproceedins implements Viite{
     private int loppusivu;
     private String julkaisija;
     private String tunnus;
+    private final String bibtexTyyppi = "@inproceedings";
 
     public Inproceedins(String tekija, String otsikko, String teos, int vuosi, int alkusivu, int loppusivu, String julkaisija, String tunnus) {
         this.tekija = tekija;
@@ -115,5 +116,10 @@ public class Inproceedins implements Viite{
     @Override
     public String toString() {
         return "Inproceedings{" + "tekija=" + tekija + ", otsikko=" + otsikko + ", teos=" + teos + ", vuosi=" + vuosi + ", sivut=" + alkusivu+"--"+loppusivu + ", julkaisija=" + julkaisija + ", tunnus=" + tunnus + '}';
+    }
+
+    @Override
+    public String getTyyppi() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

@@ -16,6 +16,7 @@ public class Kirja implements Viite {
     private int vuosi;
     private String julkaisija;
     private String tunnus;
+    private final String bibtexTyyppi = "@book";
 
     public Kirja(String tekija, String teoksenNimi, int vuosi, String julkaisija, String tunnus) {
         this.tekija = tekija;
@@ -78,6 +79,11 @@ public class Kirja implements Viite {
     @Override
     public String toString() {
         return "Kirja{" + "tekija=" + tekija + ", teoksenNimi=" + teoksenNimi + ", vuosi=" + vuosi + ", julkaisija=" + julkaisija + ", tunnus=" + tunnus + '}';
+    }
+
+    @Override
+    public String getTyyppi() {
+        return bibtexTyyppi;
     }
     
     

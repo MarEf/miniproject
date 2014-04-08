@@ -51,7 +51,7 @@ public class MuunninTest {
 "\n";
     
 private String testiTuloste3 = "@article{W04,\n" +
-"author = {Whittington, Keith J.},\n" +
+"author = {Keith J. Whittington},\n" +
 "title = {Infusing active learning into introductory programming courses},\n" +
 "journal = {J. Comput. Small Coll.},\n" +
 "volume = {19},\n" +
