@@ -69,7 +69,7 @@ public class App {
 
     private void lisaaUusiViite(Io io) {
         io.tulosta("Lisätään viite");
-        io.tulosta("Tyypit\n1 Kirja\n2 Artikkeli\n3 Inproceedins");
+        io.tulosta("Tyypit:\n   1 Kirja\n   2 Artikkeli\n   3 Inproceedins");
         while(true){
             int tyyppi = io.lueInt("Tyypin numero: ");
             
@@ -94,7 +94,7 @@ public class App {
         String tekija = io.lueString("Tekijä: ");
         String julkaisija = io.lueString("Julkaisija: ");
         int vuosi = io.lueInt("Vuosi: ");
-        String tunnus = io.lueString("Tunnus: "); 
+        String tunnus = kysyTunnus(io); 
         
         Viite uusi = new Kirja(tekija, nimi, vuosi, julkaisija, tunnus);
         viitteet.add(uusi);
@@ -110,7 +110,7 @@ public class App {
         int numero = io.lueInt("Numero: ");
         int alkusivu = io.lueInt("Alkusivu: ");
         int loppusivu = io.lueInt("Loppusivu: ");
-        String tunnus = io.lueString("Tunnus: "); 
+        String tunnus = kysyTunnus(io); 
         
         Viite uusi = new Artikkeli(
                 kirjoittaja, 
@@ -125,6 +125,10 @@ public class App {
         viitteet.add(uusi);
         io.tulosta("Artikkeli lisätty");
     }
+
+    private String kysyTunnus(Io io) {
+        return io.lueString("Tunnus: ");
+    }
     
     private void luoUusiInproceedins(Io io) {
 
@@ -135,7 +139,7 @@ public class App {
         int alkusivu = io.lueInt("Alkusivu: ");
         int loppusivu = io.lueInt("Loppusivu: ");
         String julkaisija = io.lueString("Julkaisija: ");
-        String tunnus = io.lueString("Tunnus: ");
+        String tunnus = kysyTunnus(io);
         
         Viite uusi = new Inproceedins(
                 tekija, 
