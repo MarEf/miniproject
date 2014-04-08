@@ -16,6 +16,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 import viitemanageri.logiikka.Muunnin;
 import viitemanageri.viitteet.Artikkeli;
+import viitemanageri.viitteet.Inproceedins;
 import viitemanageri.viitteet.Kirja;
 import viitemanageri.viitteet.Viite;
 
@@ -60,26 +61,23 @@ private String testiTuloste3 = "@article{W04,\n" +
 "pages = {249--259},\n" +
 "}\n" +
 "\n";
-    
-    public MuunninTest() {
-    }
-    
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
+
+private String testiTuloste4 = "@inproceedings{HM06,\n" +
+"author = {Hassinen, Marko and M\\\"{a}yr\\\"{a}, Hannu},\n" +
+"title = {Learning programming by programming: a case study},\n" +
+"booktitle = {Baltic Sea '06: Proceedings of the 6th Baltic Sea conference on Computing education research: Koli Calling 2006},\n" +
+"year = {2006},\n" +
+"pages = {117--119},\n" +
+"publisher = {ACM},\n" +
+"}\n" +
+"\n";
+
     
     @Before
     public void setUp() {
         m = new Muunnin();
     }
-    
-    @After
-    public void tearDown() {
-    }
+
 
     // TODO add test methods here.
     // The methods must be annotated with annotation @Test. For example:
@@ -119,5 +117,16 @@ private String testiTuloste3 = "@article{W04,\n" +
         viitelista.add(new Artikkeli("Keith J. Whittington", 
                 "Infusing active learning into introductory programming courses", "J. Comput. Small Coll.", 2004, 19, 5, 249, 259, "W04" ));
         assertEquals(testiTuloste3, m.muunnaViitteetBibtexMuotoon(viitelista));
+    }
+    
+    @Test
+    public void muunninMuuntaaOikeinInproceedingsArtikkelin(){
+        List<Viite> viitelista = new ArrayList();
+        viitelista.add(new Inproceedins("Hassinen, Marko and Mäyrä, Hannu", 
+                "Learning programming by programming: a case study", 
+                "Baltic Sea '06: Proceedings of the 6th Baltic Sea conference on Computing education research: Koli Calling 2006",
+                2006, 117, 119, "ACM", "HM06"));
+        
+        assertEquals(testiTuloste4, m.muunnaViitteetBibtexMuotoon(viitelista));
     }
 }
