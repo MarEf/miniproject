@@ -8,6 +8,8 @@ import viitemanageri.io.KonsoliIo;
 import viitemanageri.viitteet.Kirja;
 import viitemanageri.logiikka.Muunnin;
 import viitemanageri.logiikka.Tallenna;
+import viitemanageri.viitteet.Artikkeli;
+import viitemanageri.viitteet.Inproceedins;
 import viitemanageri.viitteet.Viite;
 
 /**
@@ -18,7 +20,7 @@ public class App {
 
     private static Io io = new KonsoliIo(new Scanner(System.in));
 
-    private static List<Viite> kirjat = new ArrayList<Viite>();
+    private static List<Viite> viitteet = new ArrayList<Viite>();
 
     private static Muunnin muuntaja = new Muunnin();
     private static Tallenna tallentaja = new Tallenna();
@@ -33,39 +35,119 @@ public class App {
 
             String komento = io.lueString("Komento (lisaa, tallenna, listaa, exit): ");
             if (komento.equals("lisaa")) {
-                io.tulosta("Lisätään kirja");
-                String nimi = io.lueString("Nimi: ");
-                String tekija = io.lueString("Tekijä: ");
-
-                String julkaisija = io.lueString("Julkaisija: ");
-                int vuosi = io.lueInt("Vuosi: ");
-                String tunnus = io.lueString("Tunnus: ");
-
-                Kirja uusi = new Kirja(tekija, nimi, vuosi, julkaisija, tunnus);
-                kirjat.add(uusi);
-                io.tulosta("Kirja lisätty");
+                lisaaUusiViite(io);
 
             } else if (komento.equals("listaa")) {
-
-                for (Viite k : kirjat) {
-                    io.tulosta(k.toString());
-                }
+                listaaViitteet(io);
 
             } else if (komento.equals("tallenna")) {
-                String kansio = io.lueString("Mihin kansioon: ");
-                String tiedostoNimi = io.lueString("Tiedostonimi: ");
-                String data = muuntaja.muunnaViitteetBibtexMuotoon(kirjat);
-                if (tallentaja.tallennaTiedosto(data, kansio, tiedostoNimi)) {
-                    io.tulosta("Tallennettu");
-                } else {
-                    io.tulosta("Ei onnistunut");
-                }
+                luoViitteistaBibtexTiedosto(io);
 
             } else if (komento.equals("exit")) {
                 break;
             }
 
         }
+    }
+
+    private void listaaViitteet(Io io) {
+        for (Viite k : viitteet) {
+            io.tulosta(k.toString());
+        }
+    }
+
+    private void luoViitteistaBibtexTiedosto(Io io) {
+        String kansio = io.lueString("Mihin kansioon: ");
+        String tiedostoNimi = io.lueString("Tiedostonimi: ");
+        String data = muuntaja.muunnaViitteetBibtexMuotoon(viitteet);
+        if (tallentaja.tallennaTiedosto(data, kansio, tiedostoNimi)) {
+            io.tulosta("Tallennettu");
+        } else {
+            io.tulosta("Ei onnistunut");
+        }
+    }
+
+    private void lisaaUusiViite(Io io) {
+        io.tulosta("Lisätään viite");
+        io.tulosta("Tyypit\n1 Kirja\n2 Artikkeli\n3 Inproceedins");
+        while(true){
+            int tyyppi = io.lueInt("Tyypin numero: ");
+            
+            if(tyyppi==1){
+                luoUusiKirja(io);
+            }else if(tyyppi==2){
+                luoUusiArtikkeli(io);
+            }else if(tyyppi==3){
+                luoUusiInproceedins(io);
+            }else{
+                io.tulosta("Viitteen tyyppi oli virheellinen");
+                continue;
+            }
+            break;
+            
+        }
+    }
+
+    private void luoUusiKirja(Io io) {
+
+        String nimi = io.lueString("Nimi: ");
+        String tekija = io.lueString("Tekijä: ");
+        String julkaisija = io.lueString("Julkaisija: ");
+        int vuosi = io.lueInt("Vuosi: ");
+        String tunnus = io.lueString("Tunnus: "); 
+        
+        Viite uusi = new Kirja(tekija, nimi, vuosi, julkaisija, tunnus);
+        viitteet.add(uusi);
+        io.tulosta("Kirja lisätty");
+    }
+    private void luoUusiArtikkeli(Io io) {
+
+        String kirjoittaja = io.lueString("Kirjoittaja: ");
+        String otsikko = io.lueString("Otsikko: ");
+        String lehti = io.lueString("Lehti: ");
+        int vuosi = io.lueInt("Vuosi: ");
+        int nidenumero = io.lueInt("Nidenumero: ");
+        int numero = io.lueInt("Numero: ");
+        int alkusivu = io.lueInt("Alkusivu: ");
+        int loppusivu = io.lueInt("Loppusivu: ");
+        String tunnus = io.lueString("Tunnus: "); 
+        
+        Viite uusi = new Artikkeli(
+                kirjoittaja, 
+                otsikko, 
+                lehti, 
+                vuosi, 
+                nidenumero, 
+                numero, 
+                alkusivu, 
+                loppusivu, 
+                tunnus);
+        viitteet.add(uusi);
+        io.tulosta("Artikkeli lisätty");
+    }
+    
+    private void luoUusiInproceedins(Io io) {
+
+        String tekija = io.lueString("Tekijä: ");
+        String otsikko = io.lueString("Otsikko: ");
+        String teos = io.lueString("Teos: ");
+        int vuosi = io.lueInt("Vuosi: ");
+        int alkusivu = io.lueInt("Alkusivu: ");
+        int loppusivu = io.lueInt("Loppusivu: ");
+        String julkaisija = io.lueString("Julkaisija: ");
+        String tunnus = io.lueString("Tunnus: ");
+        
+        Viite uusi = new Inproceedins(
+                tekija, 
+                otsikko, 
+                teos, 
+                vuosi,
+                alkusivu, 
+                loppusivu, 
+                julkaisija, 
+                tunnus);
+        viitteet.add(uusi);
+        io.tulosta("Inproceedins lisätty");
     }
     
     public static void main(String[] args) {
@@ -112,5 +194,5 @@ public class App {
 //
 //        }
 
-    }
+    } 
 }
