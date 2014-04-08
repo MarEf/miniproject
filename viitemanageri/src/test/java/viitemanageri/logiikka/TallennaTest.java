@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package logiikka;
+package viitemanageri.logiikka;
 
 import java.io.File;
 import java.io.IOException;

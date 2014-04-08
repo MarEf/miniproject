@@ -7,7 +7,7 @@ description 'User can add a book to the list of entries'
 
 scenario "User can add a book to entries", {
     given 'command lisaa selected', {
-       io = new StubIO("lisaa", "Matti Meikalainen", "Teoksen Nimi", "Julkaisija", "2014", "Tunnus", "exit")
+       io = new StubIO("lisaa", "1", "Matti Meikalainen", "Teoksen Nimi", "Julkaisija", "2014", "Tunnus", "exit")
        appi = new App()
     }
 
