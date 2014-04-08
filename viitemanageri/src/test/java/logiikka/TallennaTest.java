@@ -22,7 +22,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import viitemanageri.App;
-import viitemanageri.logiikka.Muunna;
+import viitemanageri.logiikka.Muunnin;
 import viitemanageri.logiikka.Tallenna;
 import viitemanageri.viitteet.Kirja;
 
@@ -60,7 +60,7 @@ public class TallennaTest {
     
     @Test
     public void tallennetaanOikeanMuotoinenTiedostoOikeaanPaikkaan(){
-        Muunna m = new Muunna();
+        Muunnin m = new Muunnin();
         
         List k = new ArrayList();
         
@@ -94,7 +94,7 @@ public class TallennaTest {
     
     @Test
     public void yritetaanTallentaaVirheellisenNiminenTiedosto(){
-        Muunna m = new Muunna();
+        Muunnin m = new Muunnin();
         
         List k = new ArrayList();
         

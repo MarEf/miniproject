@@ -15,9 +15,9 @@ import viitemanageri.viitteet.Viite;
  *
  * @author test
  */
-public class Muunna {
+public class Muunnin {
     
-    public Muunna(){
+    public Muunnin(){
         
     }
     

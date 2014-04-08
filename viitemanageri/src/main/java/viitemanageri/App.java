@@ -6,7 +6,7 @@ import java.util.Scanner;
 import viitemanageri.io.Io;
 import viitemanageri.io.KonsoliIo;
 import viitemanageri.viitteet.Kirja;
-import viitemanageri.logiikka.Muunna;
+import viitemanageri.logiikka.Muunnin;
 import viitemanageri.logiikka.Tallenna;
 import viitemanageri.viitteet.Viite;
 
@@ -20,7 +20,7 @@ public class App {
 
     private static List<Viite> kirjat = new ArrayList<Viite>();
 
-    private static Muunna muuntaja = new Muunna();
+    private static Muunnin muuntaja = new Muunnin();
     private static Tallenna tallentaja = new Tallenna();
 
     public App() {

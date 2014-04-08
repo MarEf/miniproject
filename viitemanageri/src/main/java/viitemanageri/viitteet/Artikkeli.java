@@ -20,16 +20,18 @@ public class Artikkeli implements Viite{
     private String lehti;
     private int vuosi;
     private int nidenumero;
+    private int numero;
     private int alkusivu;
     private int loppusivu;
     private String tunnus;
 
-    public Artikkeli(String kirjoittaja, String otsikko, String lehti, int vuosi, int nidenumero, int alkusivu, int loppusivu, String tunnus) {
+    public Artikkeli(String kirjoittaja, String otsikko, String lehti, int vuosi, int nidenumero, int numero, int alkusivu, int loppusivu, String tunnus) {
         this.kirjoittaja = kirjoittaja;
         this.otsikko = otsikko;
         this.lehti = lehti;
         this.vuosi = vuosi;
         this.nidenumero = nidenumero;
+        this.numero = numero;
         this.alkusivu = alkusivu;
         this.loppusivu = loppusivu;
         this.tunnus = tunnus;
@@ -100,20 +102,31 @@ public class Artikkeli implements Viite{
         this.tunnus = tunnus;
     }
 
+    public int getNumero() {
+        return numero;
+    }
+
+    public void setNumero(int numero) {
+        this.numero = numero;
+    }
+    
+    
+
     @Override
     public List<Arvo> palautaKaikkiArvot() {
         List<Arvo> kaikkiArvot = new ArrayList<Arvo>();
         kaikkiArvot.add(new Arvo("author", kirjoittaja));
         kaikkiArvot.add(new Arvo("title", otsikko));
         kaikkiArvot.add(new Arvo("journal", lehti));
-        kaikkiArvot.add(new Arvo("year", ""+vuosi));
         kaikkiArvot.add(new Arvo("volume", ""+nidenumero));
+        kaikkiArvot.add(new Arvo("number", ""+numero));
+        kaikkiArvot.add(new Arvo("year", ""+vuosi));        
         kaikkiArvot.add(new Arvo("pages", alkusivu+"--"+loppusivu));
         return kaikkiArvot;
     }
     
     @Override
     public String toString() {
-        return "Artikkeli{" + "kirjoittaja=" + kirjoittaja+ ", lehti=" + lehti + ", vuosi="+ vuosi+", nidenumero="+nidenumero+ ", sivut="+alkusivu+"--"+loppusivu+ ", tunnus=" + tunnus + '}';
+        return "Artikkeli{" + "kirjoittaja=" + kirjoittaja+ ", lehti=" + lehti + ", vuosi="+ vuosi+", nidenumero="+nidenumero+ ", numero="+numero + ", sivut="+alkusivu+"--"+loppusivu+ ", tunnus=" + tunnus + '}';
     }
 }

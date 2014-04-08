@@ -14,14 +14,18 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import viitemanageri.logiikka.Muunna;
+import viitemanageri.logiikka.Muunnin;
+import viitemanageri.viitteet.Artikkeli;
 import viitemanageri.viitteet.Kirja;
+import viitemanageri.viitteet.Viite;
 
 /**
  *
  * @author test
  */
 public class MuunninTest {
+    
+    private Muunnin m;
     
     private String testiTuloste = "@book{asd,\n" +
 "author = {Testi Testaaja},\n" +
@@ -46,6 +50,17 @@ public class MuunninTest {
 "}\n" +
 "\n";
     
+private String testiTuloste3 = "@article{W04,\n" +
+"author = {Whittington, Keith J.},\n" +
+"title = {Infusing active learning into introductory programming courses},\n" +
+"journal = {J. Comput. Small Coll.},\n" +
+"volume = {19},\n" +
+"number = {5},\n" +
+"year = {2004},\n" +
+"pages = {249--259},\n" +
+"}\n" +
+"\n";
+    
     public MuunninTest() {
     }
     
@@ -59,6 +74,7 @@ public class MuunninTest {
     
     @Before
     public void setUp() {
+        m = new Muunnin();
     }
     
     @After
@@ -74,7 +90,6 @@ public class MuunninTest {
     @Test
     public void muunninMuuntaaOikeinTestiSyotteen(){
         
-        Muunna m = new Muunna();
         
         List k = new ArrayList();
         
@@ -87,7 +102,6 @@ public class MuunninTest {
     @Test
     public void muunninMuuntaaOikeinTestiSyotteet(){
         
-        Muunna m = new Muunna();
         
         List k = new ArrayList();
         
@@ -97,5 +111,13 @@ public class MuunninTest {
         
         String a = m.muunnaViitteetBibtexMuotoon(k);
         assertEquals(a, testiTuloste2);
+    }
+    
+    @Test
+    public void muunninMuuntaaOikeinArtikkelin(){
+        List<Viite> viitelista = new ArrayList();
+        viitelista.add(new Artikkeli("Keith J. Whittington", 
+                "Infusing active learning into introductory programming courses", "J. Comput. Small Coll.", 2004, 19, 5, 249, 259, "W04" ));
+        assertEquals(testiTuloste3, m.muunnaViitteetBibtexMuotoon(viitelista));
     }
 }
