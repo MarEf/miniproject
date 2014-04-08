@@ -2,6 +2,7 @@
 
 package viitemanageri.viitteet;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,7 +10,7 @@ import java.util.List;
  *
  * @author glindstr@cs
  */
-public class Kirja implements Viite {
+public class Kirja implements Viite, Serializable{
 
     private String tekija;
     private String teoksenNimi;

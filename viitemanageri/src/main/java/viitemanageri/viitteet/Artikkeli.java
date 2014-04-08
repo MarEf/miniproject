@@ -6,6 +6,7 @@
 
 package viitemanageri.viitteet;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,7 +14,7 @@ import java.util.List;
  *
  * @author maria
  */
-public class Artikkeli implements Viite{
+public class Artikkeli implements Viite, Serializable{
     
     private String kirjoittaja;
     private String otsikko;

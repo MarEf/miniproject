@@ -8,6 +8,7 @@ import viitemanageri.io.KonsoliIo;
 import viitemanageri.viitteet.Kirja;
 import viitemanageri.logiikka.Muunnin;
 import viitemanageri.logiikka.Tallenna;
+import viitemanageri.logiikka.ViiteTiedosto;
 import viitemanageri.viitteet.Artikkeli;
 import viitemanageri.viitteet.Inproceedins;
 import viitemanageri.viitteet.Viite;
@@ -21,6 +22,7 @@ public class App {
     private static Io io = new KonsoliIo(new Scanner(System.in));
 
     private static List<Viite> viitteet = new ArrayList<Viite>();
+    private ViiteTiedosto viitteetTiedosto;
 
     private static Muunnin muuntaja = new Muunnin();
     private static Tallenna tallentaja = new Tallenna();
@@ -29,6 +31,8 @@ public class App {
     }
     
     public void aja(Io io) {
+        viitteetTiedosto = new ViiteTiedosto("viiteet");
+        viitteet = viitteetTiedosto.lataaTiedosto();
         io.tulosta("Tervetuloa käyttämään ViiteManageria!");
 
         while (true) {
@@ -83,6 +87,7 @@ public class App {
                 io.tulosta("Viitteen tyyppi oli virheellinen");
                 continue;
             }
+            paivitaViiteTiedosto();
             break;
             
         }
@@ -96,7 +101,7 @@ public class App {
         int vuosi = io.lueInt("Vuosi: ");
         String tunnus = kysyTunnus(io); 
         
-        Viite uusi = new Kirja(tekija, nimi, vuosi, julkaisija, tunnus);
+        Viite uusi = new Kirja(tekija, nimi, vuosi, julkaisija, tunnus); 
         viitteet.add(uusi);
         io.tulosta("Kirja lisätty");
     }
@@ -154,6 +159,9 @@ public class App {
         io.tulosta("Inproceedins lisätty");
     }
     
+    private void paivitaViiteTiedosto() {
+        viitteetTiedosto.paivitaTiedosto(viitteet);
+    }
     public static void main(String[] args) {
         
         App appi = new App();
@@ -199,4 +207,5 @@ public class App {
 //        }
 
     } 
+ 
 }
