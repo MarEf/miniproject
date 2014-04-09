@@ -34,7 +34,7 @@ public class App {
     }
 
     public void aja(Io io) {
-        viitteetTiedosto = new ViiteTiedosto("viiteet");
+        viitteetTiedosto = new ViiteTiedosto("viitteet");
         viitteet = viitteetTiedosto.lataaTiedosto();
         tarkistaja = new Tarkistus(viitteet);
         io.tulosta("Tervetuloa käyttämään ViiteManageria!");

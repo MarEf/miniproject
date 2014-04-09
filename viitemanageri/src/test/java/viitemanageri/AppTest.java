@@ -1,5 +1,6 @@
 package viitemanageri;
 
+import java.io.File;
 import org.junit.Before;
 import org.junit.Test;
 import viitemanageri.io.StubIO;
@@ -60,9 +61,10 @@ public class AppTest {
     
     @Test
     public void josViiteTyyppiVaaraSaaSyottaaUudestaan(){
-        io = new StubIO("lisaa", "4", "1", "a", "b", "c", "2014", "A1", "exit");
+        io = new StubIO("lisaa", "4", "1", "a", "b", "c", "2014", "A11", "exit");
         app.aja(io);
         assertEquals("Kirja lisätty", nViimeisinTuloste(2));
+        new File("viitteet").delete();
     }
     
     private String nViimeisinTuloste(int n){
