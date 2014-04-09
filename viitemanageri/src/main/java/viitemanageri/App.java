@@ -5,12 +5,13 @@ import java.util.List;
 import java.util.Scanner;
 import viitemanageri.io.Io;
 import viitemanageri.io.KonsoliIo;
-import viitemanageri.viitteet.Kirja;
 import viitemanageri.logiikka.Muunnin;
 import viitemanageri.logiikka.Tallenna;
+import viitemanageri.logiikka.Tarkistus;
 import viitemanageri.logiikka.ViiteTiedosto;
 import viitemanageri.viitteet.Artikkeli;
 import viitemanageri.viitteet.Inproceedins;
+import viitemanageri.viitteet.Kirja;
 import viitemanageri.viitteet.Viite;
 
 /**
@@ -27,12 +28,15 @@ public class App {
     private static Muunnin muuntaja = new Muunnin();
     private static Tallenna tallentaja = new Tallenna();
 
+    private Tarkistus tarkistaja;
+
     public App() {
     }
-    
+
     public void aja(Io io) {
         viitteetTiedosto = new ViiteTiedosto("viiteet");
         viitteet = viitteetTiedosto.lataaTiedosto();
+        tarkistaja = new Tarkistus(viitteet);
         io.tulosta("Tervetuloa käyttämään ViiteManageria!");
 
         while (true) {
@@ -74,22 +78,22 @@ public class App {
     private void lisaaUusiViite(Io io) {
         io.tulosta("Lisätään viite");
         io.tulosta("Tyypit:\n   1 Kirja\n   2 Artikkeli\n   3 Inproceedins");
-        while(true){
+        while (true) {
             int tyyppi = io.lueInt("Tyypin numero: ");
-            
-            if(tyyppi==1){
+
+            if (tyyppi == 1) {
                 luoUusiKirja(io);
-            }else if(tyyppi==2){
+            } else if (tyyppi == 2) {
                 luoUusiArtikkeli(io);
-            }else if(tyyppi==3){
+            } else if (tyyppi == 3) {
                 luoUusiInproceedins(io);
-            }else{
+            } else {
                 io.tulosta("Viitteen tyyppi oli virheellinen");
                 continue;
             }
             paivitaViiteTiedosto();
             break;
-            
+
         }
     }
 
@@ -99,12 +103,13 @@ public class App {
         String tekija = io.lueString("Tekijä: ");
         String julkaisija = io.lueString("Julkaisija: ");
         int vuosi = io.lueInt("Vuosi: ");
-        String tunnus = kysyTunnus(io); 
-        
-        Viite uusi = new Kirja(tekija, nimi, vuosi, julkaisija, tunnus); 
+        String tunnus = kysyTunnus(io);
+
+        Viite uusi = new Kirja(tekija, nimi, vuosi, julkaisija, tunnus);
         lisaaViiteListaan(uusi);
         io.tulosta("Kirja lisätty");
     }
+
     private void luoUusiArtikkeli(Io io) {
 
         String kirjoittaja = io.lueString("Kirjoittaja: ");
@@ -115,26 +120,34 @@ public class App {
         int numero = io.lueInt("Numero: ");
         int alkusivu = io.lueInt("Alkusivu: ");
         int loppusivu = io.lueInt("Loppusivu: ");
-        String tunnus = kysyTunnus(io); 
-        
+        String tunnus = kysyTunnus(io);
+
         Viite uusi = new Artikkeli(
-                kirjoittaja, 
-                otsikko, 
-                lehti, 
-                vuosi, 
-                nidenumero, 
-                numero, 
-                alkusivu, 
-                loppusivu, 
+                kirjoittaja,
+                otsikko,
+                lehti,
+                vuosi,
+                nidenumero,
+                numero,
+                alkusivu,
+                loppusivu,
                 tunnus);
         lisaaViiteListaan(uusi);
         io.tulosta("Artikkeli lisätty");
     }
 
     private String kysyTunnus(Io io) {
-        return io.lueString("Tunnus: ");
+        String tunnus;
+        while (true) {
+            tunnus = io.lueString("Tunnus: ");
+            if (tarkistaja.onkoUniikki(tunnus)) {
+                return tunnus;
+            } else {
+                io.tulosta("Ei uniikki, yritä uudestaan.");
+            }
+        }
     }
-    
+
     private void luoUusiInproceedins(Io io) {
 
         String tekija = io.lueString("Tekijä: ");
@@ -145,15 +158,15 @@ public class App {
         int loppusivu = io.lueInt("Loppusivu: ");
         String julkaisija = io.lueString("Julkaisija: ");
         String tunnus = kysyTunnus(io);
-        
+
         Viite uusi = new Inproceedins(
-                tekija, 
-                otsikko, 
-                teos, 
+                tekija,
+                otsikko,
+                teos,
                 vuosi,
-                alkusivu, 
-                loppusivu, 
-                julkaisija, 
+                alkusivu,
+                loppusivu,
+                julkaisija,
                 tunnus);
         lisaaViiteListaan(uusi);
         io.tulosta("Inproceedings lisätty");
@@ -162,16 +175,18 @@ public class App {
     private void lisaaViiteListaan(Viite uusi) {
         viitteet = viitteetTiedosto.lataaTiedosto();
         viitteet.add(uusi);
+        tarkistaja.paivitaViiteet(viitteet);
     }
-    
+
     private void paivitaViiteTiedosto() {
         viitteetTiedosto.paivitaTiedosto(viitteet);
     }
+
     public static void main(String[] args) {
-        
+
         App appi = new App();
         appi.aja(io);
-        
+
 //        io.tulosta("Tervetuloa käyttämään ViiteManageria!");
 //
 //        while (true) {
@@ -210,7 +225,6 @@ public class App {
 //            }
 //
 //        }
+    }
 
-    } 
- 
 }
