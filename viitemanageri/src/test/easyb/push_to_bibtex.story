@@ -2,6 +2,7 @@ import viitemanageri.*
 import viitemanageri.io.*
 import viitemanageri.logiikka.*
 import viitemanageri.viitteet.*
+import java.io.File;
 
 description 'User can create a bibTex-file of all existing entries'
 
