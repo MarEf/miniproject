@@ -8,7 +8,6 @@ description 'User can create a bibTex-file of all existing entries'
 
 scenario "user can save data to a file in bibTex form", {
     given 'command tallenna selected', {
-       new File("src/Viiteluettelo").delete()
        io = new StubIO("tallenna", "src", "Viiteluettelo", "exit")
        appi = new App()
     }
