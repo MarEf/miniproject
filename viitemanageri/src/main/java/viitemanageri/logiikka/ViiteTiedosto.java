@@ -50,12 +50,8 @@ public class ViiteTiedosto{
         
         try {
             ObjectInputStream lataus = new ObjectInputStream(new FileInputStream(tiedostonNimi));
-            viitteet = (List<Viite>) lataus.readObject(); 
-        } catch (FileNotFoundException ex) {
-            
-        } catch (IOException ex) {
-            Logger.getLogger(ViiteTiedosto.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
+            viitteet = (List<Viite>) lataus.readObject();  
+        } catch (Exception ex) {
             Logger.getLogger(ViiteTiedosto.class.getName()).log(Level.SEVERE, null, ex);
         }
         return viitteet;
