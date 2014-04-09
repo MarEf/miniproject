@@ -156,7 +156,7 @@ public class App {
                 julkaisija, 
                 tunnus);
         viitteet.add(uusi);
-        io.tulosta("Inproceedins lisätty");
+        io.tulosta("Inproceedings lisätty");
     }
     
     private void paivitaViiteTiedosto() {

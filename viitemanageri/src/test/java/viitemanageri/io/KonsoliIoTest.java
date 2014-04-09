@@ -17,8 +17,8 @@ import static org.mockito.Mockito.verify;
  * @author gabriel
  */
 public class KonsoliIoTest {
-    Io io;
-    Scanner scanner;
+    private Io io;
+    private Scanner scanner;
     
     @Test
     public void lukuLuetaanOikein()
