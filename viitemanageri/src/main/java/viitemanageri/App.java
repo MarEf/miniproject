@@ -102,7 +102,7 @@ public class App {
         String tunnus = kysyTunnus(io); 
         
         Viite uusi = new Kirja(tekija, nimi, vuosi, julkaisija, tunnus); 
-        viitteet.add(uusi);
+        lisaaViiteListaan(uusi);
         io.tulosta("Kirja lisätty");
     }
     private void luoUusiArtikkeli(Io io) {
@@ -127,7 +127,7 @@ public class App {
                 alkusivu, 
                 loppusivu, 
                 tunnus);
-        viitteet.add(uusi);
+        lisaaViiteListaan(uusi);
         io.tulosta("Artikkeli lisätty");
     }
 
@@ -155,8 +155,13 @@ public class App {
                 loppusivu, 
                 julkaisija, 
                 tunnus);
-        viitteet.add(uusi);
+        lisaaViiteListaan(uusi);
         io.tulosta("Inproceedings lisätty");
+    }
+
+    private void lisaaViiteListaan(Viite uusi) {
+        viitteet = viitteetTiedosto.lataaTiedosto();
+        viitteet.add(uusi);
     }
     
     private void paivitaViiteTiedosto() {
