@@ -82,4 +82,24 @@ public class ViiteTiedostoTest {
         
         new File("viitteet").delete();
     }
+    
+    @Test
+    public void yritetaanTallentaaViitteetVirheellisenNimiseenTiedostoon(){
+        
+        List<Viite> k = new ArrayList();
+        
+        k.add(new Kirja("Testi Testaaja", "Loremi", 2000, "Olem julkaisija", "asd"));
+        k.add(new Kirja("Tekiasd", "Juuh elikkäs", 2001, "Olen julkaisija", "dot")); 
+        k.add(new Artikkeli("Keith J. Whittington", 
+                "Infusing active learning into introductory programming courses", 
+                "J. Comput. Small Coll.", 2004, 19, 5, 249, 259, "W04" ));
+
+        ViiteTiedosto a = new ViiteTiedosto("...................../............");
+        a.paivitaTiedosto(k);
+        
+        assertFalse(k.toString() == a.lataaTiedosto().toString());
+        
+        
+        new File("viitteet").delete();
+    }
 }
