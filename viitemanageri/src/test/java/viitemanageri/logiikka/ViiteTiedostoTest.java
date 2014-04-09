@@ -99,7 +99,5 @@ public class ViiteTiedostoTest {
         
         assertFalse(k.toString().equals(a.lataaTiedosto().toString()));
         
-        
-        new File("viitteet").delete();
     }
 }
