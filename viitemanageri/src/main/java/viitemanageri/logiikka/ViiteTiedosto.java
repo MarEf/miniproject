@@ -52,7 +52,7 @@ public class ViiteTiedosto{
             ObjectInputStream lataus = new ObjectInputStream(new FileInputStream(tiedostonNimi));
             viitteet = (List<Viite>) lataus.readObject();  
         } catch (Exception ex) {
-            Logger.getLogger(ViiteTiedosto.class.getName()).log(Level.SEVERE, null, ex);
+            
         }
         return viitteet;
         
