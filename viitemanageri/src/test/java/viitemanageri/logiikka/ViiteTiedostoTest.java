@@ -97,7 +97,7 @@ public class ViiteTiedostoTest {
         ViiteTiedosto a = new ViiteTiedosto("...................../............");
         a.paivitaTiedosto(k);
         
-        assertFalse(k.toString() == a.lataaTiedosto().toString());
+        assertFalse(k.toString().equals(a.lataaTiedosto().toString()));
         
         
         new File("viitteet").delete();
