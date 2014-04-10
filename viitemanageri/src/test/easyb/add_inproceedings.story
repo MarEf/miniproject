@@ -5,23 +5,21 @@ import viitemanageri.viitteet.*
 
 description 'User can add a book to the list of entries'
 
-scenario "User can add an article to entries", {
-    given 'command lisaa selected', {
-
+scenario "User can add an inproceedings article to entries", {
+    given 'command lisaa and command inproceedings selected', {
+       new File("viitteet").delete();
+       io = new StubIO("lisaa", "3", "John Doe", "b", "c", "2014", "1", "2", "d", "AA1", "exit")
+       appi = new App()
         
 
     }
 
-    and 'command article selected',{
-
-    }
-
-    when 'valid article information is provided', {
-
+    when 'valid inproceedings information is provided', {
+        appi.aja(io)
     }
 
     then 'a book is added to the entries', {
-      //  io.getPrints().shouldHave("Artikkeli lisätty")
+        io.getPrints().shouldHave("Inproceedings lisätty")
     }
 }
 
