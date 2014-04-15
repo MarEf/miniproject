@@ -32,7 +32,7 @@ public class Muunnin {
         
     }
     
-    private String muunnaViiteBibtexMuotoon(Viite muunnettavaViite){
+    public String muunnaViiteBibtexMuotoon(Viite muunnettavaViite){
         
         String bibtex = muunnettavaViite.getTyyppi()+"{"+muunnettavaViite.getTunnus()+",\n";
         
@@ -44,7 +44,6 @@ public class Muunnin {
         }
         
         bibtex += "}\n\n";
-        System.out.print(bibtex);
         return bibtex;
         
     }
