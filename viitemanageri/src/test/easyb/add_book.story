@@ -18,7 +18,7 @@ scenario "User can add a book to entries", {
     }
 
     then 'a book is added to the entries', {
-        io.getPrints().shouldHave("Kirja lisätty")
+        io.getPrints().shouldHave("Kirja lis")
     }
 }
 
@@ -34,6 +34,6 @@ scenario "User can not add a book to entries twice", {
     }
 
     then 'a book should not be added to the entries', {
-       io.getPrints().shouldHave("Ei uniikki, yritä uudestaan.")
+       io.getPrints().shouldHave("Ei uniikki, yrit")
     }
 }

@@ -20,7 +20,7 @@ scenario "User can add an article to entries", {
     }
 
     then 'a book is added to the entries', {
-        io.getPrints().shouldHave("Artikkeli lisätty")
+        io.getPrints().shouldHave("Artikkeli lis")
     }
 }
 

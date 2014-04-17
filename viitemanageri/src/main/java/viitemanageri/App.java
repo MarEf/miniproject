@@ -4,7 +4,6 @@ import viitemanageri.komennot.Lisays;
 import viitemanageri.komennot.Komento;
 import viitemanageri.komennot.Lista;
 import viitemanageri.komennot.Tallennus;
-import viitemanageri.komennot.Exit;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -40,8 +39,6 @@ public class App {
         kommenot.put("lisaa", new Lisays(manageri, io));
         kommenot.put("listaa", new Lista(io, manageri));
         kommenot.put("tallenna", new Tallennus(io, muuntaja, manageri));
-        kommenot.put("exit", new Exit());
-
     }
     
  
@@ -57,9 +54,9 @@ public class App {
             Komento komento = kommenot.get(komentoString);
             if (komento != null) {
                 komento.suorita();
-
-            } 
-            else{
+            } else if(komentoString.equals("exit")) {
+                break;
+            } else {
                 io.tulosta("Virheellinen komento");
             }
         }
