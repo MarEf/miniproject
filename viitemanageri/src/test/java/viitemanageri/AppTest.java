@@ -39,55 +39,55 @@ public class AppTest {
 
     }
 
-//    @Test
-//    public void artikkelinLisaaminenOnnistuu(){
-//        io = new StubIO("lisaa", "2", "a", "b", "c", "2014", "1", "2", "3", "4", "A2", "exit");
-//        app = new App(io);
-//        app.aja();
-//        assertEquals("Artikkeli lisätty", nViimeisinTuloste(2));
-//        
-//    }
-//    
-//    @Test
-//    public void inProceedingsArtikkelinLisaaminenOnnistuu(){
-//        io = new StubIO("lisaa", "3", "a", "b", "c", "2014", "1", "2", "d", "A3", "exit");
-//        app = new App(io);
-//        app.aja();
-//        assertEquals("Inproceedings lisätty", nViimeisinTuloste(2));    
-//    }
-//    
-//    @Test
-//    public void tallentaminenOnnistuu(){
-//        io = new StubIO("lisaa", "3", "a", "b", "c", "2014", "1", "2", "d", "A4", "tallenna", ".", "viitteet1.txt", "exit");
-//        app = new App(io);
-//        app.aja();
-//        assertEquals("Tallennettu", nViimeisinTuloste(2));
-//    }
-//    
-//    @Test
-//    public void tallentaminenEiOnnistuuJosPolkuVirheellinen(){
-//        io = new StubIO("lisaa", "3", "a", "b", "c", "2014", "1", "2", "d", "A5", "tallenna", "No_dir", "viitteet1.txt", "exit");
-//        app = new App(io);
-//        app.aja();
-//        assertEquals("Ei onnistunut", nViimeisinTuloste(2));
-//    }
-//    
-//    @Test
-//    public void viitteidenListaaminenOnnistuu(){
-//        io = new StubIO("listaa", "exit");
-//        app = new App(io);
-//        app.aja();
-//        assertEquals("Komento (lisaa, tallenna, listaa, exit): ", nViimeisinTuloste(1));
-//    }
-//    
-//    @Test
-//    public void josViiteTyyppiVaaraSaaSyottaaUudestaan(){
-//        io = new StubIO("lisaa", "4", "1", "a", "b", "c", "2014", "A11", "exit");
-//        app = new App(io);
-//        app.aja();
-//        assertEquals("Kirja lisätty", nViimeisinTuloste(2));
-//        new File("viitteet").delete();
-//    }
+    @Test
+    public void artikkelinLisaaminenOnnistuu(){
+        io = new StubIO("lisaa", "2", "a", "b", "c", "2014", "1", "2", "3", "4", "A2", "exit");
+        app = new App(io, viitetiedosto);
+        app.aja();
+        assertEquals("Artikkeli lisätty", nViimeisinTuloste(2));
+        
+    }
+    
+    @Test
+    public void inProceedingsArtikkelinLisaaminenOnnistuu(){
+        io = new StubIO("lisaa", "3", "a", "b", "c", "2014", "1", "2", "d", "A3", "exit");
+        app = new App(io, viitetiedosto);
+        app.aja();
+        assertEquals("Inproceedings lisätty", nViimeisinTuloste(2));    
+    }
+    
+    @Test
+    public void tallentaminenOnnistuu(){
+        io = new StubIO("lisaa", "3", "a", "b", "c", "2014", "1", "2", "d", "A4", "tallenna", ".", "viitteet1.txt", "exit");
+        app = new App(io, viitetiedosto);
+        app.aja();
+        assertEquals("Tallennettu", nViimeisinTuloste(2));
+    }
+    
+    @Test
+    public void tallentaminenEiOnnistuuJosPolkuVirheellinen(){
+        io = new StubIO("lisaa", "3", "a", "b", "c", "2014", "1", "2", "d", "A5", "tallenna", "No_dir", "viitteet1.txt", "exit");
+        app = new App(io, viitetiedosto);
+        app.aja();
+        assertEquals("Ei onnistunut", nViimeisinTuloste(2));
+    }
+    
+    @Test
+    public void viitteidenListaaminenOnnistuu(){
+        io = new StubIO("listaa", "exit");
+        app = new App(io, viitetiedosto);
+        app.aja();
+        assertEquals("Komento (lisaa, tallenna, listaa, exit): ", nViimeisinTuloste(1));
+    }
+    
+    @Test
+    public void josViiteTyyppiVaaraSaaSyottaaUudestaan(){
+        io = new StubIO("lisaa", "4", "1", "a", "b", "c", "2014", "A11", "exit");
+        app = new App(io, viitetiedosto);
+        app.aja();
+        assertEquals("Kirja lisätty", nViimeisinTuloste(2));
+        new File("viitteet").delete();
+    }
     private String nViimeisinTuloste(int n) {
         return io.getPrints().get(io.getPrints().size() - n);
     }
