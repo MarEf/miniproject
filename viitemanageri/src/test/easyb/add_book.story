@@ -10,11 +10,11 @@ scenario "User can add a book to entries", {
     given 'command lisaa selected', {
        new File("viitteet").delete()
        io = new StubIO("lisaa", "1", "Matti Meikalainen", "Teoksen Nimi", "Julkaisija", "2014", "Tunnus", "exit")
-       appi = new App()
+       appi = new App(io)
     }
 
     when 'valid book information is provided', {
-       appi.aja(io)
+       appi.aja()
     }
 
     then 'a book is added to the entries', {
@@ -26,11 +26,11 @@ scenario "User can not add a book to entries twice", {
     given 'command lisaa kirja selected', {
        new File("viitteet").delete();
       io = new StubIO("lisaa", "1", "Matti Meikalainen", "Teoksen Nimi", "Julkaisija", "2014", "Tunnus", "lisaa", "1", "Matti Meikalainen", "Teoksen Nimi", "Julkaisija", "2014", "Tunnus", "Tunnus2", "exit")
-      appi = new App()
+      appi = new App(io)
     }
 
     when 'valid book information is provided', {
-      appi.aja(io)
+      appi.aja()
     }
 
     then 'a book should not be added to the entries', {

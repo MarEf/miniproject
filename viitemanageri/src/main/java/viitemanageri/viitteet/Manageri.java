@@ -6,9 +6,10 @@
 
 package viitemanageri.viitteet;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import viitemanageri.logiikka.Tarkistus;
 import viitemanageri.logiikka.ViiteTiedosto;
 
 /**
@@ -19,21 +20,57 @@ public class Manageri {
     
     private List<Viite> viitteet = new ArrayList<Viite>();
     private ViiteTiedosto viitteetTiedosto;
-    private Tarkistus tarkistaja;
+
 
     public Manageri() {
-        tarkistaja = new Tarkistus(viitteet);
+
+        viitteetTiedosto = new ViiteTiedosto("viitteet");
+        viitteet = viitteetTiedosto.lataaTiedosto();
     }
     
-    private void lisaaViiteListaan(Viite uusi) {
+    public void lisaaViiteListaan(Viite uusi) {
         viitteet = viitteetTiedosto.lataaTiedosto();
         viitteet.add(uusi);
-        tarkistaja.paivitaViiteet(viitteet);
     }
 
-    private void paivitaViiteTiedosto() {
+    public void paivitaViiteTiedosto() {
         viitteetTiedosto.paivitaTiedosto(viitteet);
     }
+
+    public List<Viite> getViitteet() {
+        return viitteet;
+    }
+    
+    public boolean onkoUniikki(String tunnus) {
+        if (viitteet.isEmpty()) {
+            return true;
+        } else {
+            for (Viite i : viitteet) {
+                if (tunnus.equalsIgnoreCase(i.getTunnus())) {
+                    return false;
+                }
+            }
+            return true;
+        }
+    }
+    
+    public  boolean tallennaBibtexTiedosto(
+            String tallennettavaData, 
+            String sijainti, 
+            String tiedostonNimi){
+        
+        try {
+            FileOutputStream tiedosto;
+            tiedosto = new FileOutputStream(sijainti+"/"+tiedostonNimi);
+            
+            tiedosto.write(tallennettavaData.getBytes());
+        } catch (IOException ex) {
+            return false;
+        }
+        return true;
+        
+    }
+    
     
     
 }

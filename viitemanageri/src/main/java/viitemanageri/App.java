@@ -1,17 +1,20 @@
 package viitemanageri;
 
+import viitemanageri.komennot.Lisays;
+import viitemanageri.komennot.Komento;
+import viitemanageri.komennot.Lista;
+import viitemanageri.komennot.Tallennus;
+import viitemanageri.komennot.Exit;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 import viitemanageri.io.Io;
 import viitemanageri.io.KonsoliIo;
 import viitemanageri.logiikka.Muunnin;
-import viitemanageri.logiikka.Tallenna;
-import viitemanageri.logiikka.Tarkistus;
 import viitemanageri.logiikka.ViiteTiedosto;
-import viitemanageri.viitteet.Artikkeli;
-import viitemanageri.viitteet.Inproceedins;
-import viitemanageri.viitteet.Kirja;
+import viitemanageri.viitteet.Manageri;
 import viitemanageri.viitteet.Viite;
 
 /**
@@ -20,211 +23,54 @@ import viitemanageri.viitteet.Viite;
  */
 public class App {
 
-    private static Io io = new KonsoliIo(new Scanner(System.in));
+    private Io io; 
+
+    private Manageri manageri;
 
     private static List<Viite> viitteet = new ArrayList<Viite>();
     private ViiteTiedosto viitteetTiedosto;
 
     private static Muunnin muuntaja = new Muunnin();
-    private static Tallenna tallentaja = new Tallenna();
+    private Map<String, Komento> kommenot;
 
-    private Tarkistus tarkistaja;
+    public App(Io io) {
+        this.io = io;
+        kommenot = new HashMap();
+        manageri = new Manageri();
+        kommenot.put("lisaa", new Lisays(manageri, io));
+        kommenot.put("listaa", new Lista(io, manageri));
+        kommenot.put("tallenna", new Tallennus(io, muuntaja, manageri));
+        kommenot.put("exit", new Exit());
 
-    public App() {
     }
+    
+ 
 
-    public void aja(Io io) {
+    public void aja() {
         viitteetTiedosto = new ViiteTiedosto("viitteet");
         viitteet = viitteetTiedosto.lataaTiedosto();
-        tarkistaja = new Tarkistus(viitteet);
         io.tulosta("Tervetuloa käyttämään ViiteManageria!");
 
         while (true) {
 
-            String komento = io.lueString("Komento (lisaa, tallenna, listaa, exit): ");
-            if (komento.equals("lisaa")) {
-                lisaaUusiViite(io);
+            String komentoString = io.lueString("Komento (lisaa, tallenna, listaa, exit): ");
+            Komento komento = kommenot.get(komentoString);
+            if (komento != null) {
+                komento.suorita();
 
-            } else if (komento.equals("listaa")) {
-                listaaViitteet(io);
-
-            } else if (komento.equals("tallenna")) {
-                luoViitteistaBibtexTiedosto(io);
-
-            } else if (komento.equals("exit")) {
-                break;
-            }
-
-        }
-    }
-
-    private void listaaViitteet(Io io) {
-        for (Viite k : viitteet) {
-            io.tulosta(k.toString());
-        }
-    }
-
-    private void luoViitteistaBibtexTiedosto(Io io) {
-        String kansio = io.lueString("Mihin kansioon: ");
-        String tiedostoNimi = io.lueString("Tiedostonimi: ");
-        String data = muuntaja.muunnaViitteetBibtexMuotoon(viitteet);
-        if (tallentaja.tallennaTiedosto(data, kansio, tiedostoNimi)) {
-            io.tulosta("Tallennettu");
-        } else {
-            io.tulosta("Ei onnistunut");
-        }
-    }
-
-    private void lisaaUusiViite(Io io) {
-        io.tulosta("Lisätään viite");
-        io.tulosta("Tyypit:\n   1 Kirja\n   2 Artikkeli\n   3 Inproceedins");
-        while (true) {
-            int tyyppi = io.lueInt("Tyypin numero: ");
-
-            if (tyyppi == 1) {
-                luoUusiKirja(io);
-            } else if (tyyppi == 2) {
-                luoUusiArtikkeli(io);
-            } else if (tyyppi == 3) {
-                luoUusiInproceedins(io);
-            } else {
-                io.tulosta("Viitteen tyyppi oli virheellinen");
-                continue;
-            }
-            paivitaViiteTiedosto();
-            break;
-
-        }
-    }
-
-    private void luoUusiKirja(Io io) {
-
-        String nimi = io.lueString("Nimi: ");
-        String tekija = io.lueString("Tekijä: ");
-        String julkaisija = io.lueString("Julkaisija: ");
-        int vuosi = io.lueInt("Vuosi: ");
-        String tunnus = kysyTunnus(io);
-
-        Viite uusi = new Kirja(tekija, nimi, vuosi, julkaisija, tunnus);
-        lisaaViiteListaan(uusi);
-        io.tulosta("Kirja lisätty");
-    }
-
-    private void luoUusiArtikkeli(Io io) {
-
-        String kirjoittaja = io.lueString("Kirjoittaja: ");
-        String otsikko = io.lueString("Otsikko: ");
-        String lehti = io.lueString("Lehti: ");
-        int vuosi = io.lueInt("Vuosi: ");
-        int nidenumero = io.lueInt("Nidenumero: ");
-        int numero = io.lueInt("Numero: ");
-        int alkusivu = io.lueInt("Alkusivu: ");
-        int loppusivu = io.lueInt("Loppusivu: ");
-        String tunnus = kysyTunnus(io);
-
-        Viite uusi = new Artikkeli(
-                kirjoittaja,
-                otsikko,
-                lehti,
-                vuosi,
-                nidenumero,
-                numero,
-                alkusivu,
-                loppusivu,
-                tunnus);
-        lisaaViiteListaan(uusi);
-        io.tulosta("Artikkeli lisätty");
-    }
-
-    private String kysyTunnus(Io io) {
-        String tunnus;
-        while (true) {
-            tunnus = io.lueString("Tunnus: ");
-            if (tarkistaja.onkoUniikki(tunnus)) {
-                return tunnus;
-            } else {
-                io.tulosta("Ei uniikki, yritä uudestaan.");
+            } 
+            else{
+                io.tulosta("Virheellinen komento");
             }
         }
     }
 
-    private void luoUusiInproceedins(Io io) {
-
-        String tekija = io.lueString("Tekijä: ");
-        String otsikko = io.lueString("Otsikko: ");
-        String teos = io.lueString("Teos: ");
-        int vuosi = io.lueInt("Vuosi: ");
-        int alkusivu = io.lueInt("Alkusivu: ");
-        int loppusivu = io.lueInt("Loppusivu: ");
-        String julkaisija = io.lueString("Julkaisija: ");
-        String tunnus = kysyTunnus(io);
-
-        Viite uusi = new Inproceedins(
-                tekija,
-                otsikko,
-                teos,
-                vuosi,
-                alkusivu,
-                loppusivu,
-                julkaisija,
-                tunnus);
-        lisaaViiteListaan(uusi);
-        io.tulosta("Inproceedings lisätty");
-    }
-
-    private void lisaaViiteListaan(Viite uusi) {
-        viitteet = viitteetTiedosto.lataaTiedosto();
-        viitteet.add(uusi);
-        tarkistaja.paivitaViiteet(viitteet);
-    }
-
-    private void paivitaViiteTiedosto() {
-        viitteetTiedosto.paivitaTiedosto(viitteet);
-    }
+   
 
     public static void main(String[] args) {
-
-        App appi = new App();
-        appi.aja(io);
-
-//        io.tulosta("Tervetuloa käyttämään ViiteManageria!");
-//
-//        while (true) {
-//
-//            String komento = io.lueString("Komento (lisaa, tallenna, listaa, exit): ");
-//            if (komento.equals("lisaa")) {
-//                io.tulosta("Lisätään kirja");
-//                String nimi = io.lueString("Nimi: ");
-//                String tekija = io.lueString("Tekijä: ");
-//
-//                String julkaisija = io.lueString("Julkaisija: ");
-//                int vuosi = io.lueInt("Vuosi: ");
-//                String tunnus = io.lueString("Tunnus: ");
-//
-//                Kirja uusi = new Kirja(tekija, nimi, vuosi, julkaisija, tunnus);
-//                kirjat.add(uusi);
-//
-//            } else if (komento.equals("listaa")) {
-//
-//                for (Viite k : kirjat) {
-//                    io.tulosta(k.toString());
-//                }
-//
-//            } else if (komento.equals("tallenna")) {
-//                String kansio = io.lueString("Mihin kansioon: ");
-//                String tiedostoNimi = io.lueString("Tiedostonimi: ");
-//                String data = muuntaja.muunnaViitteetBibtexMuotoon(kirjat);
-//                if (tallentaja.tallennaTiedosto(data, kansio, tiedostoNimi)) {
-//                    io.tulosta("Tallennettu");
-//                } else {
-//                    io.tulosta("Ei onnistunut");
-//                }
-//
-//            } else if (komento.equals("exit")) {
-//                break;
-//            }
-//
-//        }
+        Io io = new KonsoliIo(new Scanner(System.in));
+        App appi = new App(io);
+        appi.aja();
     }
 
 }

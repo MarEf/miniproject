@@ -11,12 +11,12 @@ scenario "User can add an article to entries", {
 
        new File("viitteet").delete()
        io = new StubIO("lisaa", "2", "a", "b", "c", "2014", "1", "2", "3", "4", "AA2", "exit")
-       appi = new App()
+       appi = new App(io)
 
     }
 
     when 'valid inproceedings information is provided', {
-        appi.aja(io)
+        appi.aja()
     }
 
     then 'a book is added to the entries', {

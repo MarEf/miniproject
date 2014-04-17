@@ -10,18 +10,18 @@ scenario "User can add a book to entries", {
     given 'command lisaa selected', {
        new File("viitteet").delete();
        io = new StubIO("lisaa", "1", "Matti Meikalainen", "Teoksen Nimi", "Julkaisija", "2014", "Tunnus", "exit")
-       appi = new App()
+       appi = new App(io)
     }
 
     when 'valid book information is provided', {
-       appi.aja(io)
+       appi.aja()
     }
 
     then 'book is found another application', {
-        appi2 = new App()
         io2 = new StubIO("listaa", "exit")
+        appi2 = new App(io2)
 
-        appi2.aja(io2)
+        appi2.aja()
         io2.getPrints().shouldHave("Matti Meikalainen")
     }
 }

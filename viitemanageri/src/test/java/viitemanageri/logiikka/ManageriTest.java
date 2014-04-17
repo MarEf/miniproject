@@ -15,48 +15,39 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.junit.After;
-import org.junit.AfterClass;
-import static org.junit.Assert.assertEquals;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
+import static org.junit.Assert.*;
 import viitemanageri.App;
-import viitemanageri.logiikka.Muunnin;
-import viitemanageri.logiikka.Tallenna;
 import viitemanageri.viitteet.Kirja;
+import viitemanageri.viitteet.Manageri;
 
 /**
  *
- * @author test
+ * @author glindstr
  */
-public class TallennaTest {
-    private Object tallennettuTiedosto;
+public class ManageriTest {
     
-    public TallennaTest() {
-    }
-    
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
+    Manageri manageri;
     
     @Before
     public void setUp() {
+        manageri = new Manageri();
+    }
+     @Test
+    public void palautetaanFalseJosTunnusOnJoOlemassa() {
+       Kirja kirja = new Kirja("a", "b", 2014, "c", "t1");
+       manageri.lisaaViiteListaan(kirja);
+       
+       assertFalse(manageri.onkoUniikki("t1")); 
     }
     
-    @After
-    public void tearDown() {
+    @Test
+    public void palautetaanTrueJosTunnusOnVapaa(){
+       Kirja kirja = new Kirja("a", "b", 2014, "c", "t2");
+       manageri.lisaaViiteListaan(kirja);
+       assertTrue(manageri.onkoUniikki("t3"));
     }
-
-    // TODO add test methods here.
-    // The methods must be annotated with annotation @Test. For example:
-    //
-    // @Test
-    // public void hello() {}
     
     @Test
     public void tallennetaanOikeanMuotoinenTiedostoOikeaanPaikkaan(){
@@ -70,9 +61,9 @@ public class TallennaTest {
         
         String a = m.muunnaViitteetBibtexMuotoon(k);
         
-        Tallenna t = new Tallenna();
+
         try {
-            t.tallennaTiedosto(a, new java.io.File( "." ).getCanonicalPath(), "testiaaatiedosto");
+            manageri.tallennaBibtexTiedosto(a, new java.io.File( "." ).getCanonicalPath(), "testiaaatiedosto");
             
             String h = "";
             
@@ -104,11 +95,11 @@ public class TallennaTest {
         
         String a = m.muunnaViitteetBibtexMuotoon(k);
         
-        Tallenna t = new Tallenna();
+  
         try {
-            t.tallennaTiedosto(a, new java.io.File( "." ).getCanonicalPath(), "*****");
+            manageri.tallennaBibtexTiedosto(a, new java.io.File( "." ).getCanonicalPath(), "*****");
              
-             assertEquals(t.tallennaTiedosto(a, ".............................................", "..................................../"), false);
+             assertEquals(manageri.tallennaBibtexTiedosto(a, ".............................................", "..................................../"), false);
             
             
         } catch (IOException ex) {
