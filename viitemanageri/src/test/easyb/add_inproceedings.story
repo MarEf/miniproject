@@ -19,7 +19,7 @@ scenario "User can add an inproceedings article to entries", {
     }
 
     then 'a book is added to the entries', {
-        io.getPrints().shouldHave("Inproceedings lisätty")
+        io.getPrints().shouldHave("Inproceedings lis")
     }
 }
 
