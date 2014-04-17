@@ -9,7 +9,7 @@ description 'User can create a bibTex-file of all existing entries'
 scenario "user can save data to a file in bibTex form", {
     given 'command tallenna selected', {
        io = new StubIO("tallenna", "src", "Viiteluettelo", "exit")
-       appi = new App(io)
+       appi = new App(io, "viitteet")
     }
 
     when 'given file exists', {
@@ -25,7 +25,7 @@ scenario "user can save data to a file in bibTex form", {
 scenario "data can not be saved if the target folder does not exist", {
     given 'command tallenna selected', {
        io = new StubIO("tallenna", "Kansio", "Tiedosto", "exit")
-       appi = new App(io)
+       appi = new App(io, "viitteet")
     }
 
     when 'given folder does not exist', {

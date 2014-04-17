@@ -22,9 +22,9 @@ public class Manageri {
     private ViiteTiedosto viitteetTiedosto;
 
 
-    public Manageri() {
+    public Manageri(String viitetiedosto) {
 
-        viitteetTiedosto = new ViiteTiedosto("viitteet");
+        viitteetTiedosto = new ViiteTiedosto(viitetiedosto);
         viitteet = viitteetTiedosto.lataaTiedosto();
     }
     

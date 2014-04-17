@@ -1,14 +1,10 @@
-@book{Tunnus,
-author = {Teoksen Nimi},
-title = {Matti Meikalainen},
-publisher = {Julkaisija},
+@article{AA2,
+author = {a},
+title = {b},
+journal = {c},
+volume = {1},
+number = {2},
 year = {2014},
-}
-
-@book{Tunnus2,
-author = {Teoksen Nimi},
-title = {Matti Meikalainen},
-publisher = {Julkaisija},
-year = {2014},
+pages = {3--4},
 }
 

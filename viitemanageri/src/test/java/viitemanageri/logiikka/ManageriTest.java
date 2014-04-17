@@ -29,10 +29,15 @@ import viitemanageri.viitteet.Manageri;
 public class ManageriTest {
     
     Manageri manageri;
+    private final String viitetiedosto = "viitteetTest";
     
     @Before
     public void setUp() {
-        manageri = new Manageri();
+        File viiteTiedosto = new File(viitetiedosto);
+        if (viiteTiedosto.exists()) {
+            viiteTiedosto.delete();
+        }
+        manageri = new Manageri(viitetiedosto);
     }
      @Test
     public void palautetaanFalseJosTunnusOnJoOlemassa() {

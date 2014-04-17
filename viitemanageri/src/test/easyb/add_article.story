@@ -11,7 +11,7 @@ scenario "User can add an article to entries", {
 
        new File("viitteet").delete()
        io = new StubIO("lisaa", "2", "a", "b", "c", "2014", "1", "2", "3", "4", "AA2", "exit")
-       appi = new App(io)
+       appi = new App(io, "viitteet")
 
     }
 
