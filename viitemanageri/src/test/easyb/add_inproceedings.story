@@ -15,7 +15,7 @@ scenario "User can add an inproceedings article to entries", {
     }
 
     when 'valid inproceedings information is provided', {
-        appi.aja(io)
+        appi.aja()
     }
 
     then 'a book is added to the entries', {
