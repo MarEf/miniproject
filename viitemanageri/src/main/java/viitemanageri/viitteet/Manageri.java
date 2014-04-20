@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package viitemanageri.viitteet;
 
 import java.io.FileOutputStream;
@@ -17,17 +16,16 @@ import viitemanageri.logiikka.ViiteTiedosto;
  * @author maef
  */
 public class Manageri {
-    
+
     private List<Viite> viitteet = new ArrayList<Viite>();
     private ViiteTiedosto viitteetTiedosto;
 
+    public Manageri(String viitetiedosto) {
 
-    public Manageri() {
-
-        viitteetTiedosto = new ViiteTiedosto("viitteet");
+        viitteetTiedosto = new ViiteTiedosto(viitetiedosto);
         viitteet = viitteetTiedosto.lataaTiedosto();
     }
-    
+
     public void lisaaViiteListaan(Viite uusi) {
         viitteet = viitteetTiedosto.lataaTiedosto();
         viitteet.add(uusi);
@@ -40,7 +38,7 @@ public class Manageri {
     public List<Viite> getViitteet() {
         return viitteet;
     }
-    
+
     public boolean onkoUniikki(String tunnus) {
         if (viitteet.isEmpty()) {
             return true;
@@ -53,24 +51,33 @@ public class Manageri {
             return true;
         }
     }
-    
-    public  boolean tallennaBibtexTiedosto(
-            String tallennettavaData, 
-            String sijainti, 
-            String tiedostonNimi){
-        
+
+    public boolean tallennaBibtexTiedosto(
+            String tallennettavaData,
+            String sijainti,
+            String tiedostonNimi) {
+
         try {
             FileOutputStream tiedosto;
-            tiedosto = new FileOutputStream(sijainti+"/"+tiedostonNimi);
-            
+            tiedosto = new FileOutputStream(sijainti + "/" + tiedostonNimi);
+
             tiedosto.write(tallennettavaData.getBytes());
         } catch (IOException ex) {
             return false;
         }
         return true;
-        
+
     }
-    
-    
-    
+
+    public Viite haeViite(String tunnus) {
+        Viite viite = null;
+        for (Viite v : viitteet) {
+            if (v.getTunnus().equals(tunnus)) {
+                viite = v;
+                break;
+            }
+        }
+        return viite;
+    }
+
 }

@@ -9,7 +9,7 @@ scenario "User can add an inproceedings article to entries", {
     given 'command lisaa and command inproceedings selected', {
        new File("viitteet").delete();
        io = new StubIO("lisaa", "3", "John Doe", "b", "c", "2014", "1", "2", "d", "AA1", "exit")
-       appi = new App(io)
+       appi = new App(io, "viitteet")
         
 
     }
