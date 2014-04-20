@@ -6,6 +6,8 @@
 
 package viitemanageri.suodatin;
 
+/*
+
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
@@ -17,6 +19,8 @@ import viitemanageri.viitteet.Viite;
  * 
  * 
  */
+        /*
+    
 public class Suodatin {
     
     private List<Viite> viitteet;
@@ -24,16 +28,15 @@ public class Suodatin {
     public Suodatin(List<Viite> viitteet){
         this.viitteet = viitteet;
     }
-    
-    
-    public List<Viite> suodatettuLista(Predicate<Viite> suodatin) {
-        /*
+     
+    public List<Viite> suodatettuLista(Predicate<Viite> suodatin) { 
         return viitteet
                 .stream()
                 .filter(suodatin)
-                .collect(Collectors.toList());*/
+                .collect(Collectors.toList()); 
         return null;
     }
     
     
 }
+*/

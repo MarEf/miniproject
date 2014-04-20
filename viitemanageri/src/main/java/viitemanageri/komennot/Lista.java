@@ -4,7 +4,7 @@ package viitemanageri.komennot;
 
 import static java.lang.System.out;
 import viitemanageri.io.Io;
-import viitemanageri.suodatin.Suodatin;
+//import viitemanageri.suodatin.Suodatin;
 import viitemanageri.viitteet.Manageri;
 import viitemanageri.viitteet.Viite;
 
@@ -32,7 +32,7 @@ public class Lista implements Komento{
         
     }
         
-        Suodatin s;
+        //Suodatin s;
        //s = new Suodatin( manageri.getViitteet());
         
         //s.suodatettuLista((p->p.getTyyppi() == "@book")).forEach(out::println);
