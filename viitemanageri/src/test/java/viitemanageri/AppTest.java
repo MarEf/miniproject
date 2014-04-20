@@ -77,7 +77,8 @@ public class AppTest {
         io = new StubIO("listaa", "exit");
         app = new App(io, viitetiedosto);
         app.aja();
-        assertEquals("Komento (lisaa, tallenna, listaa, exit): ", nViimeisinTuloste(1));
+        assertTrue(nViimeisinTuloste(1).contains("Komento"));
+        assertFalse(nViimeisinTuloste(1).contains("Virheellinen"));
     }
     
     @Test
