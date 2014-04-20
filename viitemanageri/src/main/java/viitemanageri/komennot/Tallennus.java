@@ -20,7 +20,7 @@ public class Tallennus implements Komento {
     private Muunnin muuntaja;
     private Manageri manageri;
  
-    public Tallennus(Io io, Muunnin muuntaja, Manageri manageri) {
+    public Tallennus(Manageri manageri, Io io, Muunnin muuntaja) {
         this.io = io;
         this.muuntaja = muuntaja;
         this.manageri = manageri;

@@ -49,7 +49,7 @@ public class KirjaTest {
     public void konstruktoriAsettaaArvotOikein(){
         
         Kirja k = new Kirja("Testi Testaaja", "Loremi", 2000, "Olem julkaisija", "asd");
-        assertEquals(k.getTekija(), "Testi Testaaja");
+        assertEquals(k.getKirjoittaja(), "Testi Testaaja");
         assertEquals(k.getVuosi(), 2000);
         assertEquals(k.getJulkaisija(), "Olem julkaisija");
         assertEquals(k.getTunnus(), "asd");

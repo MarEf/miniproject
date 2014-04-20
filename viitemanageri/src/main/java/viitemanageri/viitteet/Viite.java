@@ -16,4 +16,8 @@ public interface Viite {
     
     public String getTyyppi();
     
+    public int getVuosi();
+    
+    public String getKirjoittaja();
+    
 }

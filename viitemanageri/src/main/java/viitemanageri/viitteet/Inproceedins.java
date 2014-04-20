@@ -37,11 +37,11 @@ public class Inproceedins implements Viite, Serializable{
         this.tunnus = tunnus;
     }
 
-    public String getTekija() {
+    public String getKirjoittaja() {
         return tekija;
     }
 
-    public void setTekija(String tekija) {
+    public void setKirjoittaja(String tekija) {
         this.tekija = tekija;
     }
 

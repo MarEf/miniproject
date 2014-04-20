@@ -1,8 +1,10 @@
-
+    
 
 package viitemanageri.komennot;
 
+import static java.lang.System.out;
 import viitemanageri.io.Io;
+import viitemanageri.suodatin.Suodatin;
 import viitemanageri.viitteet.Manageri;
 import viitemanageri.viitteet.Viite;
 
@@ -15,7 +17,7 @@ public class Lista implements Komento{
    private Manageri manageri;
    private Io io;
 
-    public Lista(Io io, Manageri manageri) {
+    public Lista(Manageri manageri, Io io) {
         this.manageri = manageri;
         this.io = io;
     }
@@ -29,6 +31,11 @@ public class Lista implements Komento{
             io.tulosta(k.toString());
         
     }
+        
+        Suodatin s;
+       //s = new Suodatin( manageri.getViitteet());
+        
+        //s.suodatettuLista((p->p.getTyyppi() == "@book")).forEach(out::println);
     }
     
 }

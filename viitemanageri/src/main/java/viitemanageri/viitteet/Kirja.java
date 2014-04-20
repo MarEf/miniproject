@@ -27,7 +27,7 @@ public class Kirja implements Viite, Serializable{
         this.tunnus = tunnus;
     }      
 
-    public String getTekija() {
+    public String getKirjoittaja() {
         return tekija;
     }
 

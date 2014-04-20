@@ -1,11 +1,11 @@
 package viitemanageri;
 
+import viitemanageri.io.StubIO;
 import java.io.File;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.junit.Test;
-import viitemanageri.io.StubIO;
 import static org.junit.Assert.*;
 import org.junit.Before;
 
@@ -72,7 +72,7 @@ public class AppTest {
         io = new StubIO("listaa", "exit");
         app = new App(io);
         app.aja();
-        assertEquals("Komento (lisaa, tallenna, listaa, exit): ", nViimeisinTuloste(1));
+        assertEquals("Komento (lisaa, tallenna, listaa, filtteri, exit): ", nViimeisinTuloste(1));
     }
     
     @Test
