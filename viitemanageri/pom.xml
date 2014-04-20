@@ -44,7 +44,7 @@
                 <configuration>
                     <executable>${JAVA_8_HOME}/bin/javac</executable> 
                     <source>1.7</source>
-                    <target>1.7</target>
+                    <target>1.8</target>
                     <encoding>UTF-8</encoding> 
                 </configuration>
             </plugin>
