@@ -27,10 +27,12 @@ public class Suodatin {
     
     
     public List<Viite> suodatettuLista(Predicate<Viite> suodatin) {
+        /*
         return viitteet
                 .stream()
                 .filter(suodatin)
-                .collect(Collectors.toList());
+                .collect(Collectors.toList());*/
+        return null;
     }
     
     
