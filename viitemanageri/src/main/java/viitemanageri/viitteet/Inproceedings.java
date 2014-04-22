@@ -14,7 +14,7 @@ import java.util.List;
  *
  * @author maria
  */
-public class Inproceedins implements Viite, Serializable{
+public class Inproceedings implements Viite, Serializable{
     
     private String tekija;
     private String otsikko;
@@ -26,7 +26,7 @@ public class Inproceedins implements Viite, Serializable{
     private String tunnus;
     private final String bibtexTyyppi = "@inproceedings";
 
-    public Inproceedins(String tekija, String otsikko, String teos, int vuosi, int alkusivu, int loppusivu, String julkaisija, String tunnus) {
+    public Inproceedings(String tekija, String otsikko, String teos, int vuosi, int alkusivu, int loppusivu, String julkaisija, String tunnus) {
         this.tekija = tekija;
         this.otsikko = otsikko;
         this.teos = teos;
@@ -116,7 +116,9 @@ public class Inproceedins implements Viite, Serializable{
     
     @Override
     public String toString() {
-        return "Inproceedings{" + "tekija=" + tekija + ", otsikko=" + otsikko + ", teos=" + teos + ", vuosi=" + vuosi + ", sivut=" + alkusivu+"--"+loppusivu + ", julkaisija=" + julkaisija + ", tunnus=" + tunnus + '}';
+        //return "Inproceedings{" + "tekija=" + tekija + ", otsikko=" + otsikko + ", teos=" + teos + ", vuosi=" + vuosi + ", sivut=" + alkusivu+"--"+loppusivu + ", julkaisija=" + julkaisija + ", tunnus=" + tunnus + '}';
+    
+        return "Inproceedings\t\t Tunnus: "+tunnus+",\tTekijä: "+tekija+",\tOtsikko: "+otsikko+",\tTeos: "+teos+",\tVuosi: "+vuosi+",\tSivut: "+alkusivu+"-"+loppusivu;
     }
 
     @Override

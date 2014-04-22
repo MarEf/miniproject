@@ -79,7 +79,8 @@ public class Kirja implements Viite, Serializable{
 
     @Override
     public String toString() {
-        return "Kirja{" + "tekija=" + tekija + ", teoksenNimi=" + teoksenNimi + ", vuosi=" + vuosi + ", julkaisija=" + julkaisija + ", tunnus=" + tunnus + '}';
+        //return "Kirja{" + "tekija=" + tekija + ", teoksenNimi=" + teoksenNimi + ", vuosi=" + vuosi + ", julkaisija=" + julkaisija + ", tunnus=" + tunnus + '}';
+        return "Kirja\t\t\t Tunnus: "+tunnus+",\tTekijä: "+tekija+",\tNimi: "+teoksenNimi+",\tJulkaisija: "+julkaisija+",\tVuosi: "+vuosi;
     }
 
     @Override

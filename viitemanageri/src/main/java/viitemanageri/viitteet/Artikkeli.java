@@ -129,7 +129,8 @@ public class Artikkeli implements Viite, Serializable{
     
     @Override
     public String toString() {
-        return "Artikkeli{" + "kirjoittaja=" + kirjoittaja+ ", lehti=" + lehti + ", vuosi="+ vuosi+", nidenumero="+nidenumero+ ", numero="+numero + ", sivut="+alkusivu+"--"+loppusivu+ ", tunnus=" + tunnus + '}';
+        //return "Artikkeli{" + "kirjoittaja=" + kirjoittaja+ ", lehti=" + lehti + ", vuosi="+ vuosi+", nidenumero="+nidenumero+ ", numero="+numero + ", sivut="+alkusivu+"--"+loppusivu+ ", tunnus=" + tunnus + '}';
+        return "Artikkeli\t\t Tunnus: "+tunnus+"\tTekijä: "+ kirjoittaja + ",\tLehti: " + lehti + ",\tVuosi: "+ vuosi + ",\tNidenumero: "+nidenumero+",\tNumero: "+numero+",\tSivut: "+alkusivu+"-"+loppusivu;
     }
 
     @Override

@@ -16,7 +16,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 import viitemanageri.logiikka.Muunnin;
 import viitemanageri.viitteet.Artikkeli;
-import viitemanageri.viitteet.Inproceedins;
+import viitemanageri.viitteet.Inproceedings;
 import viitemanageri.viitteet.Kirja;
 import viitemanageri.viitteet.Viite;
 
@@ -122,7 +122,7 @@ private String testiTuloste4 = "@inproceedings{HM06,\n" +
     @Test
     public void muunninMuuntaaOikeinInproceedingsArtikkelin(){
         List<Viite> viitelista = new ArrayList();
-        viitelista.add(new Inproceedins("Hassinen, Marko and Mäyrä, Hannu", 
+        viitelista.add(new Inproceedings("Hassinen, Marko and Mäyrä, Hannu", 
                 "Learning programming by programming: a case study", 
                 "Baltic Sea '06: Proceedings of the 6th Baltic Sea conference on Computing education research: Koli Calling 2006",
                 2006, 117, 119, "ACM", "HM06"));

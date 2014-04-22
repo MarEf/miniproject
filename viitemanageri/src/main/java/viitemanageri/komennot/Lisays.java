@@ -5,7 +5,7 @@ package viitemanageri.komennot;
 import java.util.Map;
 import viitemanageri.io.Io;
 import viitemanageri.viitteet.Artikkeli;
-import viitemanageri.viitteet.Inproceedins;
+import viitemanageri.viitteet.Inproceedings;
 import viitemanageri.viitteet.Kirja;
 import viitemanageri.viitteet.Manageri;
 import viitemanageri.viitteet.Viite;
@@ -26,7 +26,7 @@ public class Lisays implements Komento{
     @Override
     public void suorita() {
         io.tulosta("Lisätään viite");
-        io.tulosta("Tyypit:\n   1 Kirja\n   2 Artikkeli\n   3 Inproceedins");
+        io.tulosta("Tyypit:\n   1 Kirja\n   2 Artikkeli\n   3 Inproceedings");
         while (true) {
             int tyyppi = io.lueInt("Tyypin numero: ");
 
@@ -96,7 +96,7 @@ public class Lisays implements Komento{
         String julkaisija = io.lueString("Julkaisija: ");
         String tunnus = kysyTunnus(io);
 
-        Viite uusi = new Inproceedins(
+        Viite uusi = new Inproceedings(
                 tekija,
                 otsikko,
                 teos,
