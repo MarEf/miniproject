@@ -171,7 +171,7 @@ public class SuodatinTest {
         
         Kirja k = new Kirja("Testi jokinTestiSuodin", "Lorem", 2000, "Olem julkaisija", "aagasd");
         
-        assertTrue(s.OnkoViiteEhtojenMukainen(k)); 
+        assertTrue(!s.OnkoViiteEhtojenMukainen(k)); 
 
     
     }
@@ -195,7 +195,7 @@ public class SuodatinTest {
         
         Kirja k = new Kirja("Testi jokinTestiSuodin", "Lorem", 2000, "Olem julkaisija", "aagasd");
         
-        assertTrue(s.OnkoViiteEhtojenMukainen(k)); 
+        assertTrue(!s.OnkoViiteEhtojenMukainen(k)); 
 
     
     }
