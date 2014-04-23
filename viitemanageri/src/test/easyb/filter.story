@@ -9,7 +9,7 @@ description 'User can filter entries'
 scenario "User can filter listed entries", {
     given 'option to add filter selected', {
        new File("viitteet").delete()
-       io = new StubIO("lisaa", "3", "John Doe", "b", "c", "2014", "1", "2", "d", "AA1", "lisaa", "3", "John Doe", "A", "c", "2013", "1", "2", "g", "AB1", "suodatin", "1", "2", "1", "2013", "listaa", "exit")
+       io = new StubIO("lisaa", "3", "John Doe", "b", "c", "2014", "1", "2", "d", "AA1", "lisaa", "3", "John Doe", "A", "c", "2013", "1", "2", "g", "AB1", "suodatin", "1", "3", "1", "2013", "listaa", "exit")
        appi = new App(io, "viitteet")
 }
     when 'filtering conditions are given', {

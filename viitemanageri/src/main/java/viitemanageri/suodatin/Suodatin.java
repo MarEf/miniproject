@@ -8,7 +8,6 @@ package viitemanageri.suodatin;
 
 
 
-import java.util.List;
 import viitemanageri.viitteet.Viite;
 
 /**
