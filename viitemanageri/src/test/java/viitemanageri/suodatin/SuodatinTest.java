@@ -72,6 +72,19 @@ public class SuodatinTest {
     
     }
     
+    @Test
+    public void testaaSuodattimenToimintaArtikkelilla2() {
+    
+        Suodatin s = new Suodatin("jokinLoreSuodin", 1, false);
+        
+        Artikkeli a = new Artikkeli("Keith J. jokinLoreSuodin", 
+                "Infusing active learning into introductory programming courses", 
+                "J. Comput. Small Coll.", 2004, 19, 5, 249, 259, "W04" );
+        assertTrue(!s.OnkoViiteEhtojenMukainen(a)); 
+
+    
+    }
+    
     
     @Test
     public void testaaSuodattimenToimintaInproceedingsilla() {
@@ -83,6 +96,21 @@ public class SuodatinTest {
                 "Baltic Sea '06: Proceedings of the 6th Baltic Sea conference on Computing education research: Koli Calling 2006",
                 2006, 117, 119, "ACM", "HM0afdfsdfdf6");
         assertTrue(s.OnkoViiteEhtojenMukainen(i)); 
+
+    
+    }
+    
+    
+    @Test
+    public void testaaSuodattimenToimintaInproceedingsilla2() {
+    
+        Suodatin s = new Suodatin("jokinLoreSuodin", 1, false);
+        
+        Inproceedings i = new Inproceedings("jokinLoreSuodin", 
+                "Learning programming by programming: a case study", 
+                "Baltic Sea '06: Proceedings of the 6th Baltic Sea conference on Computing education research: Koli Calling 2006",
+                2006, 117, 119, "ACM", "HM0afdfsdfdf6");
+        assertTrue(!s.OnkoViiteEhtojenMukainen(i)); 
 
     
     }
@@ -167,6 +195,27 @@ public class SuodatinTest {
         Kirja k = new Kirja("Testi jokinTestiSuodin", "Loremi", 2000, "Olem julkaisija", "aagasd");
         
         assertTrue(s.OnkoViiteEhtojenMukainen(k)); 
+
+    
+    }
+    
+    @Test
+    public void toStringOtsikko() {
+    
+        Suodatin s = new Suodatin("TamaOnOtsikko", 2, false);
+         
+        assertTrue(s.toString().contains("TamaOnOtsikko")); 
+
+    
+    }
+    
+    
+    @Test
+    public void toStringVuosi() {
+    
+        Suodatin s = new Suodatin("2000", 2, false);
+         
+        assertTrue(s.toString().contains("2000")); 
 
     
     }
