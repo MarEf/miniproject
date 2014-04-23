@@ -213,9 +213,19 @@ public class SuodatinTest {
     @Test
     public void toStringVuosi() {
     
-        Suodatin s = new Suodatin("2000", 2, false);
+        Suodatin s = new Suodatin("2000", 3, false);
          
         assertTrue(s.toString().contains("2000")); 
+
+    
+    }
+    
+    @Test
+    public void toStringVirheellinenTyyppi() {
+    
+        Suodatin s = new Suodatin("2000", 4, false);
+         
+        assertTrue(s.toString().contains("Suodatusperuste: \n")); 
 
     
     }
