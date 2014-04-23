@@ -47,7 +47,7 @@ public class Lisays implements Komento{
         }
     }
     
-     private void luoUusiKirja(Io io) {
+    private void luoUusiKirja(Io io) {
 
         String nimi = io.lueString("Nimi: ");
         String tekija = io.lueString("Tekijä: ");
