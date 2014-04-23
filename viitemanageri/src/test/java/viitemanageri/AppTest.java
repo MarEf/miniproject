@@ -116,6 +116,14 @@ public class AppTest {
     }
     
     @Test
+    public void lisataanEiUniikkiTunnus(){
+        io = new StubIO("lisaa", "1", "a", "b", "c", "2014", "A1as", "lisaa", "1", "a", "b", "c", "2014", "A1as", "gaifjgis", "exit");
+        app = new App(io, viitetiedosto);
+        app.aja();
+        assertTrue(!nViimeisinTuloste(2).contains("Ei uniikki, yritä uudestaan.")); 
+    }
+    
+    @Test
     public void josViiteTyyppiVaaraSaaSyottaaUudestaan(){
         io = new StubIO("lisaa", "4", "1", "a", "b", "c", "2014", "A11", "exit");
         app = new App(io, viitetiedosto);
