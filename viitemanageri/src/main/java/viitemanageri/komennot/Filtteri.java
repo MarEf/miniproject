@@ -56,16 +56,10 @@ public class Filtteri implements Komento {
             
             io.tulosta("Etsittävä arvo:\n   1 Sisältyy\n   2 Ei sisälly");
             int sisaltyyko = io.lueInt("Sisaltyyko etsittävä arvo viitteeseen: ");
-            
-            if (tyyppi == 1) {
+                       
+            if (tyyppi >= 1 && tyyppi <= 3) {
                 String suodatin = io.lueString("Etsi: ");
-                s.lisaaSuodatin(suodatin, 1, sisaltyyko);
-            } else if (tyyppi == 2) {
-                String suodatin = io.lueString("Etsi: ");
-                s.lisaaSuodatin(suodatin, 2, sisaltyyko); 
-            } else if (tyyppi == 3) {
-                String suodatin = io.lueString("Etsi: ");
-                s.lisaaSuodatin(suodatin, 3, sisaltyyko); 
+                s.lisaaSuodatin(suodatin, tyyppi, sisaltyyko);
             } else {
                 io.tulosta("Suodatusperuste on virheellinen");
                 continue;
