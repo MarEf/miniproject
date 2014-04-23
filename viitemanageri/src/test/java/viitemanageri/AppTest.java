@@ -174,6 +174,14 @@ public class AppTest {
         new File("viitteet").delete();
     }
     
+    @Test
+    public void tyhjaKomento(){
+        io = new StubIO("", "exit");
+        app = new App(io, viitetiedosto);
+        app.aja();
+        assertTrue(nViimeisinTuloste(2).contains("Virheellinen komento"));  
+    }
+    
     private String nViimeisinTuloste(int n) {
         return io.getPrints().get(io.getPrints().size() - n);
     }
