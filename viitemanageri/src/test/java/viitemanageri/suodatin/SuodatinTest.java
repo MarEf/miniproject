@@ -157,9 +157,9 @@ public class SuodatinTest {
     
         Suodatin s = new Suodatin("Loremi", 2, false);
         
-        Kirja k = new Kirja("Testi jokinTestiSuodin", "Loremi", 2000, "Olem julkaisija", "aagasd");
+        Kirja k = new Kirja("Testi jokinTestiSuodin", "Lorem", 2000, "Olem julkaisija", "aagasd");
         
-        assertTrue(!s.OnkoViiteEhtojenMukainen(k)); 
+        assertTrue(s.OnkoViiteEhtojenMukainen(k)); 
 
     
     }
@@ -169,9 +169,9 @@ public class SuodatinTest {
     
         Suodatin s = new Suodatin("2000", 3, false);
         
-        Kirja k = new Kirja("Testi jokinTestiSuodin", "Loremi", 2000, "Olem julkaisija", "aagasd");
+        Kirja k = new Kirja("Testi jokinTestiSuodin", "Lorem", 2000, "Olem julkaisija", "aagasd");
         
-        assertTrue(!s.OnkoViiteEhtojenMukainen(k)); 
+        assertTrue(s.OnkoViiteEhtojenMukainen(k)); 
 
     
     }
