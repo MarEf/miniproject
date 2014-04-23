@@ -19,14 +19,27 @@ public class KonsoliIo implements Io {
 
     @Override
     public int lueInt(String kysymys) {
-        System.out.println(kysymys + " ");
-        return Integer.parseInt(lukija.nextLine());
+        while (true) {
+            try {
+                return Integer.parseInt(lueString(kysymys));
+            } catch (NumberFormatException e) {
+                tulosta("Virhe numeron muunnossa, koita uudelleen.");
+            }
+        }
     }
 
     @Override
     public String lueString(String kysymys) {
-        System.out.println(kysymys + " ");
-        return lukija.nextLine();
+        tulosta(kysymys + " ");
+        String temp;
+        while (true) {
+            temp = lukija.nextLine();
+            if (!temp.isEmpty()) {
+                return temp;
+            } else {
+                tulosta("Ei saa olla tyhjä!");
+            }
+        }
     }
 
     @Override
