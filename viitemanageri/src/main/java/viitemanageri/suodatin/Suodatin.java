@@ -73,7 +73,9 @@ public class Suodatin {
         return "ei";
     }
     public String toString(){
-        return "\tSuodatusperuste: "+tyyppi() +"\n\t Suodatin: "+suodatin+"\n\t"+" Sisaltyykö: " + sisaltyyko()+"\n";
+        return "  Suodatusperuste: "+tyyppi() +"\n"
+                + "  Suodatin: "+suodatin+"\n"
+                + "  Sisaltyykö: " + sisaltyyko()+"\n";
     }
  
      

@@ -31,7 +31,7 @@ public class App {
         this.io = io;
         kommenot = new HashMap();
         manageri = new Manageri(viitetiedosto);
-        Suodattimet s = new Suodattimet();
+        Suodattimet s = new Suodattimet(io);
         kommenot.put("lisaa", new Lisays(manageri, io));
         kommenot.put("listaa", new Lista(manageri, io, s));
         kommenot.put("tallenna", new Tallennus(manageri, io, muuntaja));

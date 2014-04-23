@@ -8,6 +8,7 @@ package viitemanageri.suodatin;
 
 import java.util.ArrayList;
 import java.util.List;
+import viitemanageri.io.Io;
 import viitemanageri.viitteet.Viite;
 
 /**
@@ -16,11 +17,11 @@ import viitemanageri.viitteet.Viite;
  */
 public class Suodattimet {
     private List<Suodatin> listaSuodattimista;
+    private final Io io;
     
-    public Suodattimet(){
-        
-        listaSuodattimista = new ArrayList<Suodatin>();
-        
+    public Suodattimet(Io io){
+        this.listaSuodattimista = new ArrayList<>();
+        this.io = io;
     }
     
     public void lisaaSuodatin(String suodatin, int tyyppi, int sisaltyyko){
@@ -46,7 +47,7 @@ public class Suodattimet {
     
     
     public void nollaaSuodattimet(){
-        listaSuodattimista = new ArrayList<Suodatin>();
+        listaSuodattimista = new ArrayList<>();
     }
 
     private boolean tarkistaOnkoViiteEhtojenMukainen(Viite x) {
@@ -60,7 +61,7 @@ public class Suodattimet {
 
     public void listaaSuodattimet() {
         for(Suodatin z:listaSuodattimista){
-            System.out.println(z);
+            io.tulosta(z.toString());
         }
     }
     

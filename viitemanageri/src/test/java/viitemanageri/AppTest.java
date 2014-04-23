@@ -138,6 +138,13 @@ public class AppTest {
         app.aja();
         assertTrue(!nViimeisinTuloste(2).contains("TamaOnTestiSuodatin")); 
     }
+    @Test
+    public void listaaSuodatin(){
+        io = new StubIO("suodatin", "1", "1", "1", "TamaOnTestiSuodatin", "suodatin", "3", "exit");
+        app = new App(io, viitetiedosto);
+        app.aja();
+        assertTrue(nViimeisinTuloste(2).contains("TamaOnTestiSuodatin")); 
+    }
     
     
     @Test
