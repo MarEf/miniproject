@@ -23,6 +23,7 @@ public class Lisays implements Komento{
         this.io= io;
         this.manageri = manageri;
     }
+    
     @Override
     public void suorita() {
         io.tulosta("Lisätään viite");

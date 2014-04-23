@@ -5,12 +5,14 @@ import java.util.Map;
 import java.util.Scanner;
 import viitemanageri.io.Io;
 import viitemanageri.io.KonsoliIo;
+import viitemanageri.komennot.Filtteri;
 import viitemanageri.komennot.KatsoTietue;
 import viitemanageri.komennot.Komento;
 import viitemanageri.komennot.Lisays;
 import viitemanageri.komennot.Lista;
 import viitemanageri.komennot.Tallennus;
 import viitemanageri.logiikka.Muunnin;
+import viitemanageri.suodatin.Suodattimet;
 import viitemanageri.viitteet.Manageri;
 
 /**
@@ -29,11 +31,12 @@ public class App {
         this.io = io;
         kommenot = new HashMap();
         manageri = new Manageri(viitetiedosto);
+        Suodattimet s = new Suodattimet();
         kommenot.put("lisaa", new Lisays(manageri, io));
-        kommenot.put("listaa", new Lista(manageri, io));
+        kommenot.put("listaa", new Lista(manageri, io, s));
         kommenot.put("tallenna", new Tallennus(manageri, io, muuntaja));
-        kommenot.put("katso", new KatsoTietue(io, manageri, muuntaja));
-        kommenot.put("katso", new KatsoTietue(io, manageri, muuntaja));
+        kommenot.put("katso", new KatsoTietue(manageri, io, muuntaja));
+        kommenot.put("suodatin", new Filtteri(manageri, io, s));
     }
 
     public void aja() {

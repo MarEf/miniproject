@@ -16,7 +16,7 @@ public class KatsoTietue implements Komento {
     private Manageri manageri;
     private Muunnin muuntaja;
 
-    public KatsoTietue(Io io, Manageri manageri, Muunnin muuntaja) {
+    public KatsoTietue(Manageri manageri, Io io, Muunnin muuntaja) {
         this.io = io;
         this.manageri = manageri;
         this.muuntaja = muuntaja;

@@ -90,12 +90,9 @@ public class AppTest {
         assertEquals("Kirja lisätty", nViimeisinTuloste(2));
         new File("viitteet").delete();
     }
+    
     private String nViimeisinTuloste(int n) {
         return io.getPrints().get(io.getPrints().size() - n);
     }
     
-    @Test
-    public void versio(){
-        //assertEquals(System.getProperty("java.version"), "1.8.0_05");
-    }
 }
