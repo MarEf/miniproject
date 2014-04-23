@@ -104,9 +104,9 @@ public class SuodatinTest {
     @Test
     public void testaaSuodattimenToimintaInproceedingsilla2() {
     
-        Suodatin s = new Suodatin("jokinLoreSuodin", 1, false);
+        Suodatin s = new Suodatin("jokinLoreSuodina", 1, false);
         
-        Inproceedings i = new Inproceedings("jokinLoreSuodin", 
+        Inproceedings i = new Inproceedings("jokinLoreSuodina", 
                 "Learning programming by programming: a case study", 
                 "Baltic Sea '06: Proceedings of the 6th Baltic Sea conference on Computing education research: Koli Calling 2006",
                 2006, 117, 119, "ACM", "HM0afdfsdfdf6");
