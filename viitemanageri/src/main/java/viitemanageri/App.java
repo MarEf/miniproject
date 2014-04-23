@@ -57,11 +57,8 @@ public class App {
         }
     }
 
-    public static void main(String[] args) {
-        //System.out.println(System.getProperty("java.version"));
-        Io io = new KonsoliIo(new Scanner(System.in));
-        App appi = new App(io, VIITETIEDOSTO);
-        appi.aja();
+    public static void main(String[] args) { 
+        new App(new KonsoliIo(new Scanner(System.in)), VIITETIEDOSTO).aja(); 
     }
 
 }
