@@ -91,6 +91,14 @@ public class AppTest {
     }
     
     @Test
+    public void viitteidenSuodatetunListanListausOnnistuuKunSuodatettavaArvoEiSaaOllaViitteessa(){
+        io = new StubIO("lisaa", "1", "KirjanNIi", "Lorekk", "c", "2014", "sdyyhdyh", "suodatin", "1", "1", "2", "Lorekk", "listaa", "exit");
+        app = new App(io, viitetiedosto);
+        app.aja();
+        assertTrue(!nViimeisinTuloste(2).contains("Lorekk")); 
+    }
+    
+    @Test
     public void viitteidenSuodatetunListanListausOnnistuuKunSuodatettuArvoEiTasmaaViitteeseen(){
         io = new StubIO("lisaa", "1", "KirjanNIi", "Lorekk", "c", "2014", "sdyyhdyh", "suodatin", "1", "1", "1", "agahgaghafg", "listaa", "exit");
         app = new App(io, viitetiedosto);
