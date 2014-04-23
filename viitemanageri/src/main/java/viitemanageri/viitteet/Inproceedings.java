@@ -128,4 +128,9 @@ public class Inproceedings implements Viite, Serializable{
     public String getTyyppi() {
         return bibtexTyyppi;
     }
+
+    @Override
+    public String getTeoksenNimi() {
+        return getOtsikko();
+    }
 }

@@ -37,7 +37,7 @@ public class Suodatin {
             if(tyyppi == 1){
                 return x.getKirjoittaja().contains(suodatin);
             }else if(tyyppi == 2){
-                return true;
+                return x.getTeoksenNimi().contains(suodatin);
             }else if(tyyppi == 3){
                 return Integer.toString(x.getVuosi()).contains(suodatin);
             }
@@ -47,7 +47,7 @@ public class Suodatin {
             if(tyyppi == 1){
                 return !x.getKirjoittaja().contains(suodatin);
             }else if(tyyppi == 2){
-                return !true;
+                return !x.getTeoksenNimi().contains(suodatin);
             }else if(tyyppi == 3){
                 return !Integer.toString(x.getVuosi()).contains(suodatin);
             }
@@ -59,7 +59,7 @@ public class Suodatin {
         if(tyyppi == 1){
             return "tekijä";
         }else if(tyyppi == 2){
-            return "";
+            return "otsikko";
         }else if(tyyppi == 3){
             return "vuosi";
         }

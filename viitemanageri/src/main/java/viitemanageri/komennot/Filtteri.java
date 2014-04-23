@@ -50,7 +50,7 @@ public class Filtteri implements Komento {
     } 
     public void suodattimenLuominen() {
         io.tulosta("Luodaan suodatin");
-        io.tulosta("Valitse suodatusperuste:\n   1 Kirjoittaja\n   2 ?\n   3 Julkaisuvuosi");
+        io.tulosta("Valitse suodatusperuste:\n   1 Kirjoittaja\n   2 Teoksen nimi tai otsikko\n   3 Julkaisuvuosi");
         while (true) {
             int tyyppi = io.lueInt("Suodatusperuste: ");
             
