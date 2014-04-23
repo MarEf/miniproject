@@ -98,6 +98,15 @@ public class AppTest {
         assertTrue(!nViimeisinTuloste(2).contains("Lore")); 
     }
     
+    
+    @Test
+    public void virheellinenSuodatusperuste(){
+        io = new StubIO("suodatin", "1", "4", "1", "1", "1", "agahgaghafg", "exit");
+        app = new App(io, viitetiedosto);
+        app.aja();
+        assertTrue(!nViimeisinTuloste(7).contains("Suodatusperuste on virheellinen")); 
+    }
+    
     @Test
     public void josViiteTyyppiVaaraSaaSyottaaUudestaan(){
         io = new StubIO("lisaa", "4", "1", "a", "b", "c", "2014", "A11", "exit");
