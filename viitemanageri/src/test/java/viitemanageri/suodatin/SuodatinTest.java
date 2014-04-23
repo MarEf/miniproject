@@ -111,4 +111,63 @@ public class SuodatinTest {
 
     
     }
+    
+    @Test
+    public void testaaSuodattimenToimintaKirjalla2() {
+    
+        Suodatin s = new Suodatin("jokinTestiSuodin", 1, false);
+        
+        Kirja k = new Kirja("Testi jokinTestiSuodin", "Loremi", 2000, "Olem julkaisija", "aagasd");
+        
+        assertTrue(!s.OnkoViiteEhtojenMukainen(k)); 
+
+    
+    }
+    
+    @Test
+    public void testaaSuodattimenToimintaKirjallaVertamallaTeoksenNimea2() {
+    
+        Suodatin s = new Suodatin("Loremi", 2, false);
+        
+        Kirja k = new Kirja("Testi jokinTestiSuodin", "Loremi", 2000, "Olem julkaisija", "aagasd");
+        
+        assertTrue(!s.OnkoViiteEhtojenMukainen(k)); 
+
+    
+    }
+    
+    @Test
+    public void testaaSuodattimenToimintaKirjallaVertamallaVuotta2() {
+    
+        Suodatin s = new Suodatin("2000", 3, false);
+        
+        Kirja k = new Kirja("Testi jokinTestiSuodin", "Loremi", 2000, "Olem julkaisija", "aagasd");
+        
+        assertTrue(!s.OnkoViiteEhtojenMukainen(k)); 
+
+    
+    }
+    
+    @Test
+    public void testaaSuodattimenToimintaVirheelliselläSuodatusTyypilla() {
+    
+        Suodatin s = new Suodatin("2000", 4, true);
+        
+        Kirja k = new Kirja("Testi jokinTestiSuodin", "Loremi", 2000, "Olem julkaisija", "aagasd");
+        
+        assertTrue(s.OnkoViiteEhtojenMukainen(k)); 
+
+    
+    }
+    @Test
+    public void testaaSuodattimenToimintaVirheelliselläSuodatusTyypilla2() {
+    
+        Suodatin s = new Suodatin("2000", 4, false);
+        
+        Kirja k = new Kirja("Testi jokinTestiSuodin", "Loremi", 2000, "Olem julkaisija", "aagasd");
+        
+        assertTrue(s.OnkoViiteEhtojenMukainen(k)); 
+
+    
+    }
 }
