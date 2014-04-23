@@ -29,18 +29,12 @@ public class App {
 
     public App(Io io, String viitetiedosto) {
         this.io = io;
-        muuntaja = new Muunnin();
-        kommenot = new HashMap();
-        manageri = new Manageri(viitetiedosto);
-        Suodattimet s = new Suodattimet(io); 
-        kommenot.put("lisaa", new Lisays(manageri, io));
-        kommenot.put("listaa", new Lista(manageri, io, s));
-        kommenot.put("tallenna", new Tallennus(manageri, io, muuntaja));
-        kommenot.put("katso", new KatsoTietue(manageri, io, muuntaja));
-        kommenot.put("suodatin", new Filtteri(manageri, io, s));
+        muuntaja = new Muunnin(); 
+        manageri = new Manageri(viitetiedosto); 
     }
 
     public void aja() {
+        luoKomennot();
         io.tulosta("Tervetuloa käyttämään ViiteManageria!");
 
         while (true) {
@@ -58,6 +52,16 @@ public class App {
             
         }
         
+    }
+
+    private void luoKomennot() {
+        kommenot = new HashMap();
+        Suodattimet s = new Suodattimet(io);
+        kommenot.put("lisaa", new Lisays(manageri, io));
+        kommenot.put("listaa", new Lista(manageri, io, s));
+        kommenot.put("tallenna", new Tallennus(manageri, io, muuntaja));
+        kommenot.put("katso", new KatsoTietue(manageri, io, muuntaja));
+        kommenot.put("suodatin", new Filtteri(manageri, io, s));
     }
 
     public static void main(String[] args) { 
