@@ -77,10 +77,10 @@ public class SuodatinTest {
     
         Suodatin s = new Suodatin("jokinLoreSuodin", 1, false);
         
-        Artikkeli a = new Artikkeli("Keith J. jokinLoreSuodin", 
+        Artikkeli a = new Artikkeli("Keith J. jokinLoreSuodi", 
                 "Infusing active learning into introductory programming courses", 
                 "J. Comput. Small Coll.", 2004, 19, 5, 249, 259, "W04" );
-        assertTrue(!s.OnkoViiteEhtojenMukainen(a)); 
+        assertTrue(s.OnkoViiteEhtojenMukainen(a)); 
 
     
     }
@@ -106,11 +106,11 @@ public class SuodatinTest {
     
         Suodatin s = new Suodatin("jokinLoreSuodina", 1, false);
         
-        Inproceedings i = new Inproceedings("jokinLoreSuodina", 
+        Inproceedings i = new Inproceedings("jokinLoreSuodin", 
                 "Learning programming by programming: a case study", 
                 "Baltic Sea '06: Proceedings of the 6th Baltic Sea conference on Computing education research: Koli Calling 2006",
                 2006, 117, 119, "ACM", "HM0afdfsdfdf6");
-        assertTrue(!s.OnkoViiteEhtojenMukainen(i)); 
+        assertTrue(s.OnkoViiteEhtojenMukainen(i)); 
 
     
     }
