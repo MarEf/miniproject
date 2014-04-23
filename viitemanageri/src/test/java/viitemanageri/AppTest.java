@@ -83,6 +83,22 @@ public class AppTest {
     }
     
     @Test
+    public void viitteidenSuodatetunListanListausOnnistuuKunSuodatettavaArvoTasmaaViitteeseen(){
+        io = new StubIO("lisaa", "1", "KirjanNIi", "Lorekk", "c", "2014", "sdyyhdyh", "suodatin", "1", "1", "1", "Lorekk", "listaa", "exit");
+        app = new App(io, viitetiedosto);
+        app.aja();
+        assertTrue(nViimeisinTuloste(2).contains("Lore")); 
+    }
+    
+    @Test
+    public void viitteidenSuodatetunListanListausOnnistuuKunSuodatettuArvoEiTasmaaViitteeseen(){
+        io = new StubIO("lisaa", "1", "KirjanNIi", "Lorekk", "c", "2014", "sdyyhdyh", "suodatin", "1", "1", "1", "agahgaghafg", "listaa", "exit");
+        app = new App(io, viitetiedosto);
+        app.aja();
+        assertTrue(!nViimeisinTuloste(2).contains("Lore")); 
+    }
+    
+    @Test
     public void josViiteTyyppiVaaraSaaSyottaaUudestaan(){
         io = new StubIO("lisaa", "4", "1", "a", "b", "c", "2014", "A11", "exit");
         app = new App(io, viitetiedosto);
