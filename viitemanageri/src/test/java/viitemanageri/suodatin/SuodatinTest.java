@@ -86,4 +86,29 @@ public class SuodatinTest {
 
     
     }
+    
+    
+    @Test
+    public void testaaSuodattimenToimintaKirjallaVertamallaTeoksenNimea() {
+    
+        Suodatin s = new Suodatin("Loremi", 2, true);
+        
+        Kirja k = new Kirja("Testi jokinTestiSuodin", "Loremi", 2000, "Olem julkaisija", "aagasd");
+        
+        assertTrue(s.OnkoViiteEhtojenMukainen(k)); 
+
+    
+    }
+    
+    @Test
+    public void testaaSuodattimenToimintaKirjallaVertamallaVuotta() {
+    
+        Suodatin s = new Suodatin("2000", 3, true);
+        
+        Kirja k = new Kirja("Testi jokinTestiSuodin", "Loremi", 2000, "Olem julkaisija", "aagasd");
+        
+        assertTrue(s.OnkoViiteEhtojenMukainen(k)); 
+
+    
+    }
 }
