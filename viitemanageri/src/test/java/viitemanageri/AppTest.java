@@ -148,6 +148,24 @@ public class AppTest {
     
     
     @Test
+    public void virheellisenTyyppinenSuodattimenToiminnonValinta(){
+        io = new StubIO("suodatin", "4", "1", "1", "1", "TamaOnTestiSuodatin", "exit");
+        app = new App(io, viitetiedosto);
+        app.aja(); 
+        assertTrue(nViimeisinTuloste(9).contains("Suodattimen tyyppi oli virheellinen")); 
+    }
+    
+    
+    @Test
+    public void virheellisenTyyppinenSuodattimenToiminnonValinta2(){
+        io = new StubIO("suodatin", "0", "1", "1", "1", "TamaOnTestiSuodatin", "exit");
+        app = new App(io, viitetiedosto);
+        app.aja(); 
+        assertTrue(nViimeisinTuloste(9).contains("Suodattimen tyyppi oli virheellinen")); 
+    }
+    
+    
+    @Test
     public void josViiteTyyppiVaaraSaaSyottaaUudestaan(){
         io = new StubIO("lisaa", "4", "1", "a", "b", "c", "2014", "A11", "exit");
         app = new App(io, viitetiedosto);
