@@ -116,11 +116,7 @@ public class Inproceedings implements Viite, Serializable{
     
     @Override
     public String toString() {
-        //return "Inproceedings{" + "tekija=" + tekija + ", otsikko=" + otsikko + ", teos=" + teos + ", vuosi=" + vuosi + ", sivut=" + alkusivu+"--"+loppusivu + ", julkaisija=" + julkaisija + ", tunnus=" + tunnus + '}';
-    
-    
-        //return "Inproceedings\t\t Tunnus: "+tunnus+",\tTekijä: "+tekija+",\tOtsikko: "+otsikko+",\tTeos: "+teos+",\tVuosi: "+vuosi+",\tSivut: "+alkusivu+"-"+loppusivu;
-    
+
         return String.format("Inproceedings\t\tTunnus: %-20s Tekijä: %-20s Nimi: %-20s Julkaisija: %-20s Vuosi: %d",tunnus,tekija,otsikko,julkaisija,vuosi); 
     }
 
