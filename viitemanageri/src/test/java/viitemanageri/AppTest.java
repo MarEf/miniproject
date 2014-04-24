@@ -83,12 +83,119 @@ public class AppTest {
     }
     
     @Test
+    public void viitteidenSuodatetunListanListausOnnistuuKunSuodatettavaArvoTasmaaViitteeseen(){
+        io = new StubIO("lisaa", "1", "KirjanNIi", "Lorekk", "c", "2014", "sdyyhdyh", "suodatin", "1", "1", "1", "Lorekk", "listaa", "exit");
+        app = new App(io, viitetiedosto);
+        app.aja();
+        assertTrue(nViimeisinTuloste(2).contains("Lore")); 
+    }
+    
+    @Test
+    public void viitteidenSuodatetunListanListausOnnistuuKunSuodatettavaArvoEiSaaOllaViitteessa(){
+        io = new StubIO("lisaa", "1", "KirjanNIi", "Lorekk", "c", "2014", "sdyyhdyh", "suodatin", "1", "1", "2", "Lorekk", "listaa", "exit");
+        app = new App(io, viitetiedosto);
+        app.aja();
+        assertTrue(!nViimeisinTuloste(2).contains("Lorekk")); 
+    }
+    
+    @Test
+    public void viitteidenSuodatetunListanListausOnnistuuKunSuodatettuArvoEiTasmaaViitteeseen(){
+        io = new StubIO("lisaa", "1", "KirjanNIi", "Lorekk", "c", "2014", "sdyyhdyh", "suodatin", "1", "1", "1", "agahgaghafg", "listaa", "exit");
+        app = new App(io, viitetiedosto);
+        app.aja();
+        assertTrue(!nViimeisinTuloste(2).contains("Lore")); 
+    }
+    
+    
+    @Test
+    public void virheellinenSuodatusperuste(){
+        io = new StubIO("suodatin", "1", "4", "1", "1", "1", "agahgaghafg", "exit");
+        app = new App(io, viitetiedosto);
+        app.aja();
+        assertTrue(!nViimeisinTuloste(7).contains("Suodatusperuste on virheellinen")); 
+    }
+    
+    @Test
+    public void virheellinenSuodatusperuste2(){
+        io = new StubIO("suodatin", "1", "0", "1", "1", "1", "agahgaghafg", "exit");
+        app = new App(io, viitetiedosto);
+        app.aja();
+        assertTrue(!nViimeisinTuloste(7).contains("Suodatusperuste on virheellinen")); 
+    }
+    
+    @Test
+    public void lisataanEiUniikkiTunnus(){
+        io = new StubIO("lisaa", "1", "a", "b", "c", "2014", "A1as", "lisaa", "1", "a", "b", "c", "2014", "A1as", "gaifjgis", "exit");
+        app = new App(io, viitetiedosto);
+        app.aja();
+        assertTrue(!nViimeisinTuloste(2).contains("Ei uniikki, yritä uudestaan.")); 
+    }
+    
+    @Test
+    public void nollataanSuodatin(){
+        io = new StubIO("lisaa", "1", "KirjanNIi", "Lorekk", "c", "2014", "sdyyhdyh", "suodatin", "1", "1", "1", "TamaOnTestiSuodatin", "suodatin", "2", "suodatin", "3", "exit");
+        app = new App(io, viitetiedosto);
+        app.aja();
+        assertTrue(!nViimeisinTuloste(2).contains("TamaOnTestiSuodatin")); 
+    }
+    @Test
+    public void listaaSuodatin(){
+        io = new StubIO("suodatin", "1", "1", "1", "TamaOnTestiSuodatin", "suodatin", "3", "exit");
+        app = new App(io, viitetiedosto);
+        app.aja();
+        assertTrue(nViimeisinTuloste(2).contains("TamaOnTestiSuodatin")); 
+    }
+    
+    
+    @Test
+    public void virheellisenTyyppinenSuodattimenToiminnonValinta(){
+        io = new StubIO("suodatin", "4", "1", "1", "1", "TamaOnTestiSuodatin", "exit");
+        app = new App(io, viitetiedosto);
+        app.aja(); 
+        assertTrue(nViimeisinTuloste(9).contains("Suodattimen tyyppi oli virheellinen")); 
+    }
+    
+    
+    @Test
+    public void virheellisenTyyppinenSuodattimenToiminnonValinta2(){
+        io = new StubIO("suodatin", "0", "1", "1", "1", "TamaOnTestiSuodatin", "exit");
+        app = new App(io, viitetiedosto);
+        app.aja(); 
+        assertTrue(nViimeisinTuloste(9).contains("Suodattimen tyyppi oli virheellinen")); 
+    }
+    
+    
+    @Test
     public void josViiteTyyppiVaaraSaaSyottaaUudestaan(){
         io = new StubIO("lisaa", "4", "1", "a", "b", "c", "2014", "A11", "exit");
         app = new App(io, viitetiedosto);
         app.aja();
         assertEquals("Kirja lisätty", nViimeisinTuloste(2));
         new File("viitteet").delete();
+    }
+    
+    @Test
+    public void tyhjaKomento(){
+        io = new StubIO("", "exit");
+        app = new App(io, viitetiedosto);
+        app.aja();
+        assertTrue(nViimeisinTuloste(2).contains("Virheellinen komento"));  
+    }
+    
+    @Test
+    public void yksittaisenTietueenKatsominenBibtexMuodossoOnnistuu(){
+        io = new StubIO("lisaa", "1", "a", "b", "c", "2014", "A0001", "katso", "A0001", "exit");
+        app = new App(io, viitetiedosto);
+        app.aja();
+        assertTrue(nViimeisinTuloste(2).contains("@book"));
+    }
+    
+    @Test
+    public void virhellisestaTunnuksestaHuomautetaanKurYritettanKatsoYksittaistaTietuetta(){
+        io = new StubIO("lisaa", "1", "kirja", "b", "c", "2014", "A0002", "katso", "A0003", "exit");
+        app = new App(io, viitetiedosto);
+        app.aja();
+        assertTrue(nViimeisinTuloste(2).contains("Virheellinen tunnus"));
     }
     
     private String nViimeisinTuloste(int n) {

@@ -8,7 +8,6 @@ package viitemanageri.suodatin;
 
 
 
-import java.util.List;
 import viitemanageri.viitteet.Viite;
 
 /**
@@ -32,34 +31,22 @@ public class Suodatin {
     } 
 
     public boolean OnkoViiteEhtojenMukainen(Viite x) {
+        if (tyyppi<1 || tyyppi>3) {
+            return true;
+        }
         
         if(sisaltyyko){
-            if(tyyppi == 1){
-                return x.getKirjoittaja().contains(suodatin);
-            }else if(tyyppi == 2){
-                return true;
-            }else if(tyyppi == 3){
-                return Integer.toString(x.getVuosi()).contains(suodatin);
-            }
-            
+            return sisaltyy(x, tyyppi, suodatin);
         }else{
-            
-            if(tyyppi == 1){
-                return !x.getKirjoittaja().contains(suodatin);
-            }else if(tyyppi == 2){
-                return !true;
-            }else if(tyyppi == 3){
-                return !Integer.toString(x.getVuosi()).contains(suodatin);
-            }
+            return eiSisally(x, tyyppi, suodatin);
         }
-        return true;
     }
     
     private String tyyppi(){
         if(tyyppi == 1){
             return "tekijä";
         }else if(tyyppi == 2){
-            return "";
+            return "otsikko";
         }else if(tyyppi == 3){
             return "vuosi";
         }
@@ -74,7 +61,29 @@ public class Suodatin {
         return "ei";
     }
     public String toString(){
-        return "\tSuodatusperuste: "+tyyppi() +"\n\t Suodatin: "+suodatin+"\n\t"+" Sisaltyykö: " + sisaltyyko()+"\n";
+        return "  Suodatusperuste: "+tyyppi() +"\n"
+                + "  Suodatin: "+suodatin+"\n"
+                + "  Sisaltyykö: " + sisaltyyko()+"\n";
+    }
+
+    private boolean sisaltyy(Viite x, int tyyppi, String suodatin) {
+        if(tyyppi == 1){
+                return x.getKirjoittaja().contains(suodatin);
+            }else if(tyyppi == 2){
+                return x.getTeoksenNimi().contains(suodatin);
+            }else if(tyyppi == 3){
+                return Integer.toString(x.getVuosi()).contains(suodatin);
+            } return false;
+    } 
+
+    private boolean eiSisally(Viite x, int tyyppi, String suodatin) {
+        if(tyyppi == 1){
+                return !x.getKirjoittaja().contains(suodatin);
+            }else if(tyyppi == 2){
+                return !x.getTeoksenNimi().contains(suodatin);
+            }else if(tyyppi == 3){
+                return !Integer.toString(x.getVuosi()).contains(suodatin);
+            } return false;
     }
  
      

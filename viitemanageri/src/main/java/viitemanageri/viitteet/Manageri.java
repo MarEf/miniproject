@@ -17,7 +17,7 @@ import viitemanageri.logiikka.ViiteTiedosto;
  */
 public class Manageri {
 
-    private List<Viite> viitteet = new ArrayList<Viite>();
+    private List<Viite> viitteet = new ArrayList<>();
     private ViiteTiedosto viitteetTiedosto;
 
     public Manageri(String viitetiedosto) {

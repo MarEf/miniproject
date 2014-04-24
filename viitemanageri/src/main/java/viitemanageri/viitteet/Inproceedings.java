@@ -99,7 +99,7 @@ public class Inproceedings implements Viite, Serializable{
     
     @Override
     public List<Arvo> palautaKaikkiArvot() {
-        List<Arvo> kaikkiArvot = new ArrayList<Arvo>();
+        List<Arvo> kaikkiArvot = new ArrayList<>();
         kaikkiArvot.add(new Arvo("author", tekija));
         kaikkiArvot.add(new Arvo("title", otsikko));
         kaikkiArvot.add(new Arvo("booktitle", teos));
@@ -116,16 +116,17 @@ public class Inproceedings implements Viite, Serializable{
     
     @Override
     public String toString() {
-        //return "Inproceedings{" + "tekija=" + tekija + ", otsikko=" + otsikko + ", teos=" + teos + ", vuosi=" + vuosi + ", sivut=" + alkusivu+"--"+loppusivu + ", julkaisija=" + julkaisija + ", tunnus=" + tunnus + '}';
-    
-    
-        //return "Inproceedings\t\t Tunnus: "+tunnus+",\tTekijä: "+tekija+",\tOtsikko: "+otsikko+",\tTeos: "+teos+",\tVuosi: "+vuosi+",\tSivut: "+alkusivu+"-"+loppusivu;
-    
-        return String.format("Inproceedings\t\tTunnus: %-20s Tekijä: %-20s Nimi: %-20s Julkaisija: %-20s Vuosi: %d",tunnus,tekija,otsikko,julkaisija,vuosi); 
+
+        return String.format("Inproceedings\t\tTunnus: %-20s Tekijä: %-20s\n\t\t\tNimi: %-20s Julkaisija: %-20s Vuosi: %d",tunnus,tekija,otsikko,julkaisija,vuosi); 
     }
 
     @Override
     public String getTyyppi() {
         return bibtexTyyppi;
+    }
+
+    @Override
+    public String getTeoksenNimi() {
+        return getOtsikko();
     }
 }

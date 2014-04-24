@@ -20,4 +20,6 @@ public interface Viite {
     
     public String getKirjoittaja();
     
+    public String getTeoksenNimi();
+    
 }

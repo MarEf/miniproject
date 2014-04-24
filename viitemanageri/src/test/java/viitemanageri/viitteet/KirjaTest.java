@@ -55,4 +55,12 @@ public class KirjaTest {
         assertEquals(k.getTunnus(), "asd");
         assertEquals(k.getTeoksenNimi(), "Loremi");
     }
+    
+    @Test
+    public void toStringNayttaaTarkeimmatTiedot(){
+        Kirja k = new Kirja("Tauno Tekija", "Otsikko", 2014, "Julkaisu Oy", "aaa1");
+        String str = k.toString();
+        assertTrue(str.contains("Tauno Tekija") && str.contains("Otsikko") && str.contains("aaa1") && str.contains("Julkaisu Oy"));
+        
+    }
 }

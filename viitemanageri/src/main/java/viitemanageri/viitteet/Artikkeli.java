@@ -116,7 +116,7 @@ public class Artikkeli implements Viite, Serializable{
 
     @Override
     public List<Arvo> palautaKaikkiArvot() {
-        List<Arvo> kaikkiArvot = new ArrayList<Arvo>();
+        List<Arvo> kaikkiArvot = new ArrayList<>();
         kaikkiArvot.add(new Arvo("author", kirjoittaja));
         kaikkiArvot.add(new Arvo("title", otsikko));
         kaikkiArvot.add(new Arvo("journal", lehti));
@@ -129,14 +129,17 @@ public class Artikkeli implements Viite, Serializable{
     
     @Override
     public String toString() {
-        //return "Artikkeli{" + "kirjoittaja=" + kirjoittaja+ ", lehti=" + lehti + ", vuosi="+ vuosi+", nidenumero="+nidenumero+ ", numero="+numero + ", sivut="+alkusivu+"--"+loppusivu+ ", tunnus=" + tunnus + '}';
-        //return "Artikkeli\t\t Tunnus: "+tunnus+"\tTekijä: "+ kirjoittaja + ",\tLehti: " + lehti + ",\tVuosi: "+ vuosi + ",\tNidenumero: "+nidenumero+",\tNumero: "+numero+",\tSivut: "+alkusivu+"-"+loppusivu;
-    
-        return String.format("Artikkeli\t\tTunnus: %-20s Tekijä: %-20s Nimi: %-20s Julkaisija: %-20s Vuosi: %d",tunnus,kirjoittaja,otsikko,lehti,vuosi);
+
+        return String.format("Artikkeli\t\tTunnus: %-20s Tekijä: %-20s\n\t\t\tNimi: %-20s Julkaisija: %-20s Vuosi: %d",tunnus,kirjoittaja,otsikko,lehti,vuosi);
     }
 
     @Override
     public String getTyyppi() {
         return bibtexTyyppi;
+    }
+    
+    @Override
+    public String getTeoksenNimi() {
+        return getOtsikko();
     }
 }

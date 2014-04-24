@@ -36,7 +36,7 @@ public class Lisays implements Komento{
             } else if (tyyppi == 2) {
                 luoUusiArtikkeli(io);
             } else if (tyyppi == 3) {
-                luoUusiInproceedins(io);
+                luoUusiInproceedings(io);
             } else {
                 io.tulosta("Viitteen tyyppi oli virheellinen");
                 continue;
@@ -47,7 +47,7 @@ public class Lisays implements Komento{
         }
     }
     
-     private void luoUusiKirja(Io io) {
+    private void luoUusiKirja(Io io) {
 
         String nimi = io.lueString("Nimi: ");
         String tekija = io.lueString("Tekijä: ");
@@ -86,7 +86,7 @@ public class Lisays implements Komento{
         io.tulosta("Artikkeli lisätty");
     }
     
-    private void luoUusiInproceedins(Io io) {
+    private void luoUusiInproceedings(Io io) {
 
         String tekija = io.lueString("Tekijä: ");
         String otsikko = io.lueString("Otsikko: ");

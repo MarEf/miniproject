@@ -69,7 +69,7 @@ public class Kirja implements Viite, Serializable{
 
     @Override
     public List<Arvo> palautaKaikkiArvot() {
-        List<Arvo> kaikkiArvot = new ArrayList<Arvo>();
+        List<Arvo> kaikkiArvot = new ArrayList<>();
         kaikkiArvot.add(new Arvo("author", tekija));
         kaikkiArvot.add(new Arvo("title", teoksenNimi));
         kaikkiArvot.add(new Arvo("publisher", julkaisija));
@@ -79,9 +79,7 @@ public class Kirja implements Viite, Serializable{
 
     @Override
     public String toString() {
-        //return "Kirja{" + "tekija=" + tekija + ", teoksenNimi=" + teoksenNimi + ", vuosi=" + vuosi + ", julkaisija=" + julkaisija + ", tunnus=" + tunnus + '}';
-        //return "Kirja\t\t\t Tunnus: "+tunnus+",\tTekijä: "+tekija+",\tNimi: "+teoksenNimi+",\tJulkaisija: "+julkaisija+",\tVuosi: "+vuosi;
-        return String.format("Kirja\t\t\tTunnus: %-20s Tekijä: %-20s Nimi: %-20s Julkaisija: %-20s Vuosi: %d",tunnus,tekija,teoksenNimi,julkaisija,vuosi); 
+        return String.format("Kirja\t\t\tTunnus: %-20s Tekijä: %-20s\n\t\t\tNimi: %-20s Julkaisija: %-20s Vuosi: %d",tunnus,tekija,teoksenNimi,julkaisija,vuosi); 
     }
 
     @Override
