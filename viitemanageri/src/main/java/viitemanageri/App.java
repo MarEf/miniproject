@@ -43,7 +43,7 @@ public class App {
         io.tulosta("Tervetuloa käyttämään ViiteManageria!");
 
         while (true) {
-            String syote = io.lueString("Komento (lisaa, tallenna, listaa, katso, suodatin,  exit): ");
+            String syote = io.lueString("Komento (lisaa, tallenna, listaa, katso, suodatin, exit): ");
             Komento komento = kommenot.get(syote);
             if (komento != null) {
                 komento.suorita();
