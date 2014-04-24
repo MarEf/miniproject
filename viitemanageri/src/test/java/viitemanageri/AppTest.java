@@ -182,6 +182,22 @@ public class AppTest {
         assertTrue(nViimeisinTuloste(2).contains("Virheellinen komento"));  
     }
     
+    @Test
+    public void yksittaisenTietueenKatsominenBibtexMuodossoOnnistuu(){
+        io = new StubIO("lisaa", "1", "a", "b", "c", "2014", "A0001", "katso", "A0001", "exit");
+        app = new App(io, viitetiedosto);
+        app.aja();
+        assertTrue(nViimeisinTuloste(2).contains("@book"));
+    }
+    
+    @Test
+    public void virhellisestaTunnuksestaHuomautetaanKurYritettanKatsoYksittaistaTietuetta(){
+        io = new StubIO("lisaa", "1", "kirja", "b", "c", "2014", "A0002", "katso", "A0003", "exit");
+        app = new App(io, viitetiedosto);
+        app.aja();
+        assertTrue(nViimeisinTuloste(2).contains("Virheellinen tunnus"));
+    }
+    
     private String nViimeisinTuloste(int n) {
         return io.getPrints().get(io.getPrints().size() - n);
     }
